@@ -34,22 +34,19 @@ const AboutSection = () => {
 		{
 			name: 'Dr. Kavita Patil',
 			role: 'Senior Director',
-			image:
-				'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face',
+			
 			bio: '15+ years in international development, PhD in Public Health from Harvard.',
 		},
 		{
 			name: 'Rushikesh Sharma',
 			role: 'Event Director',
-			image:
-				'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face',
+			
 			bio: 'Former UN field coordinator with expertise in community development programs.',
 		},
 		{
 			name: 'Anita Desai',
 			role: 'Field Operations Lead',
-			image:
-				'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&crop=face',
+			
 			bio: 'Local community leader with 10+ years experience in grassroots organizing.',
 		},
 	];
