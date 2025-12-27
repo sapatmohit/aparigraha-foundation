@@ -141,7 +141,7 @@ const EngagementSection = () => {
                 {/* Donation Amounts */}
                 <div>
                   <h4 className="font-semibold mb-4">Choose an amount:</h4>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  <div className="grid grid-cols-3 md:grid-cols-5 gap-3">
                     {donationOptions.map((option) => (
                       <div key={option.amount} className="flex flex-col gap-2">
                         <Button
