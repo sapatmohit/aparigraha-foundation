@@ -106,7 +106,7 @@ const ProgramsSection = () => {
       id: "mealtoheal",
       title: "Meal To Heal",
       description: "Weekly Food Drive carried out at various cities across India for the needy. Meals distributed at various shelter homes and care clinics for sick and elderly. Volunteers prepare age-appropriate nutritive meals per medical requirements.",
-      image: "/images/programs/mealToheal.jpg",
+      image: "/images/programs/mealtoheal.jpg",
       icon: ArrowRight,
       stats: {
         meals: "150,000+"
@@ -123,7 +123,7 @@ const ProgramsSection = () => {
       impact: {
         title: "Feeding Hope",
         description: "Over 150,000 meals distributed across Indian states.",
-        image: "/images/programs/mealToheal.jpg",
+        image: "/images/programs/mealtoheal.jpg",
       },
       getInvolved: {
         title: "Ways to Get Involved",
@@ -138,7 +138,7 @@ const ProgramsSection = () => {
       id: "gowiththeflow",
       title: "Go With The Flow",
       description: "Sanitary Pad Drive Donation and menstrual hygiene education. Objective to provide sanitary pad kits and education PAN India; note distribution to remand homes.",
-      image: "/images/programs/goWiththeflow.jpg",
+      image: "/images/programs/gowiththeflow.jpg",
       icon: Target,
       stats: {
         beneficiaries: "—"
@@ -155,7 +155,7 @@ const ProgramsSection = () => {
       impact: {
         title: "Sanitary Access",
         description: "Distribution of sanitary kits and menstrual hygiene education across remand homes and communities.",
-        image:"/images/programs/goWiththeflow.jpg",
+        image: "/images/programs/gowiththeflow.jpg",
       },
       getInvolved: {
         title: "Ways to Get Involved",
