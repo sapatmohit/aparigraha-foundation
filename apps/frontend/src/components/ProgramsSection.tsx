@@ -123,7 +123,7 @@ const ProgramsSection = () => {
       impact: {
         title: "Feeding Hope",
         description: "Over 150,000 meals distributed across Indian states.",
-        image: "/images/programs/mealtoheal.jpg"
+        image: "/images/programs/mealToheal.jpg",
       },
       getInvolved: {
         title: "Ways to Get Involved",
@@ -155,7 +155,7 @@ const ProgramsSection = () => {
       impact: {
         title: "Sanitary Access",
         description: "Distribution of sanitary kits and menstrual hygiene education across remand homes and communities.",
-        image: "/images/programs/gowiththeflow.jpg"
+        image:"/images/programs/goWiththeflow.jpg",
       },
       getInvolved: {
         title: "Ways to Get Involved",
