@@ -21,7 +21,7 @@ const HeroSection = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container-custom pt-20">
+      <div className="relative z-10 container-custom">
         <div className="max-w-4xl mx-auto text-center text-white">
           <h1 className="hero-title mb-6 fade-in-up">
             Dedicated to Making a Holistic Difference
