@@ -202,10 +202,130 @@ export default function NewsSection() {
         {/* ----------- IMAGES TAB ----------- */}
         <TabsContent value="images" className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <Card className="overflow-hidden">
-            <img src="/images/gallery1.jpg" alt="Gallery 1" className="w-full h-64 object-cover" />
+            <img src="/images/gallary/gallary1.jpg" alt="Gallery 1" className="w-full h-64 object-cover" />
           </Card>
           <Card className="overflow-hidden">
-            <img src="/images/gallery2.jpg" alt="Gallery 2" className="w-full h-64 object-cover" />
+            <img src="/images/gallary/gallary2.jpg" alt="Gallery 2" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary3.jpg" alt="Gallery 3" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary4.jpg" alt="Gallery 4" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary5.jpg" alt="Gallery 5" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary6.jpg" alt="Gallery 6" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary7.jpg" alt="Gallery 7" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary8.jpg" alt="Gallery 8" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary9.jpg" alt="Gallery 9" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary10.jpg" alt="Gallery 10" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary11.jpg" alt="Gallery 11" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary12.jpg" alt="Gallery 12" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary13.jpg" alt="Gallery 13" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary14.jpg" alt="Gallery 14" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary15.jpg" alt="Gallery 15" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary16.jpg" alt="Gallery 16" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary17.jpg" alt="Gallery 17" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary18.jpg" alt="Gallery 18" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary19.jpg" alt="Gallery 19" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary20.jpg" alt="Gallery 20" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary21.jpg" alt="Gallery 21" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary22.jpg" alt="Gallery 22" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary23.jpg" alt="Gallery 23" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary24.jpg" alt="Gallery 24" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary25.jpg" alt="Gallery 25" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary26.jpg" alt="Gallery 26" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary27.jpg" alt="Gallery 27" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary28.jpg" alt="Gallery 28" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary29.jpg" alt="Gallery 29" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary30.jpg" alt="Gallery 30" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary31.jpg" alt="Gallery 31" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary32.jpg" alt="Gallery 32" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary33.jpg" alt="Gallery 33" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary34.jpg" alt="Gallery 34" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary35.jpg" alt="Gallery 35" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary36.jpg" alt="Gallery 36" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary37.jpg" alt="Gallery 37" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary38.jpg" alt="Gallery 38" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary39.jpg" alt="Gallery 39" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary40.jpg" alt="Gallery 40" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary41.jpg" alt="Gallery 41" className="w-full h-64 object-cover" />
+          </Card>
+          <Card className="overflow-hidden">
+            <img src="/images/gallary/gallary42.jpg" alt="Gallery 42" className="w-full h-64 object-cover" />
           </Card>
         </TabsContent>
 
