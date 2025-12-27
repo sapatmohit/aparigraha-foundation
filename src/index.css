@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+ @tailwind base;
+ @tailwind components;
+ @tailwind utilities;
 
 /* NGO Website Design System - Trustworthy, Modern, Impactful */
 
-@layer base {
+ @layer base {
   :root {
     /* Brand Colors - Deep Trust Blue & Hope Orange */
     --background: 0 0% 100%;
@@ -118,7 +118,7 @@
   }
 }
 
-@layer base {
+ @layer base {
   * {
     @apply border-border;
   }
@@ -135,7 +135,7 @@
   }
 }
 
-@layer components {
+ @layer components {
   /* Hero Section */
   .hero-gradient {
     background: var(--gradient-hero);
@@ -256,7 +256,7 @@
   }
 }
 
-@keyframes fadeInUp {
+ @keyframes fadeInUp {
   to {
     opacity: 1;
     transform: translateY(0);

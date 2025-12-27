@@ -1,11 +1,11 @@
-import Navigation from "@/components/Navigation";
-import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
-import ProgramsSection from "@/components/ProgramsSection";
-import ImpactSection from "@/components/ImpactSection";
+import ContactSection from "@/components/ContactSection";
 import EngagementSection from "@/components/EngagementSection";
-import NewsSection from "@/components/NewsSection";
 import Footer from "@/components/Footer";
+import HeroSection from "@/components/HeroSection";
+import Navigation from "@/components/Navigation";
+import NewsSection from "@/components/NewsSection";  // ← ADD THIS LINE
+import ProgramsSection from "@/components/ProgramsSection";
 
 const Index = () => {
   return (
@@ -19,9 +19,9 @@ const Index = () => {
           <HeroSection />
           <AboutSection />
           <ProgramsSection />
-          <ImpactSection />
-          <EngagementSection />
           <NewsSection />
+          <EngagementSection />
+          <ContactSection />
         </div>
       </main>
       

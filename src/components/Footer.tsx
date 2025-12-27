@@ -1,20 +1,31 @@
+import ContactForm from "@/components/ContactForm";
+import DonationModal from "@/components/DonationModal";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { 
-  Facebook, 
-  Twitter, 
-  Instagram, 
-  Linkedin, 
-  Youtube, 
-  Mail, 
-  Phone, 
-  MapPin, 
+import { useToast } from "@/hooks/use-toast";
+import {
+  ArrowRight,
+  Calendar,
+  Facebook,
   Heart,
-  ArrowRight
+  Instagram,
+  Linkedin,
+  Mail,
+  MapPin,
+  Phone,
+  Youtube
 } from "lucide-react";
+import { useState } from "react";
 
 const Footer = () => {
+  const [showDonationModal, setShowDonationModal] = useState(false);
+  const [showRecurringModal, setShowRecurringModal] = useState(false);
+  const [showContactForm, setShowContactForm] = useState(false);
+  const [email, setEmail] = useState("");
+  const [isSubscribing, setIsSubscribing] = useState(false);
+  const { toast } = useToast();
+
   const quickLinks = [
     { title: "About Us", href: "#about" },
     { title: "Our Programs", href: "#programs" },
@@ -43,12 +54,62 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { icon: Facebook, href: "#", label: "Facebook" },
-    { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Instagram, href: "#", label: "Instagram" },
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
-    { icon: Youtube, href: "#", label: "YouTube" }
+    { icon: Youtube, href: "https://www.youtube.com/@aparigrahafoundation9966/featured", label: "YouTube" },
+    { icon: Linkedin, href: "https://www.linkedin.com/company/74165852/admin/dashboard/", label: "LinkedIn" },
+    { icon: Instagram, href: "https://www.instagram.com/aparigrahafoundation/?hl=en", label: "Instagram" },
+    { icon: Facebook, href: "https://www.facebook.com/groups/aparigrahafoundation/posts/493054418681698/", label: "Facebook" }
   ];
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!email) {
+      toast({
+        title: "Email Required",
+        description: "Please enter your email address to subscribe.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    // Simple email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      toast({
+        title: "Invalid Email",
+        description: "Please enter a valid email address.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setIsSubscribing(true);
+
+    try {
+      // In a real implementation, you would send this to your backend
+      console.log("Subscribing email:", email);
+
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      toast({
+        title: "Subscribed!",
+        description: "Thank you for subscribing to our newsletter.",
+      });
+
+      // Reset email field
+      setEmail("");
+    } catch (error) {
+      console.error("Subscription error:", error);
+      toast({
+        title: "Subscription Failed",
+        description: "There was an issue subscribing. Please try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubscribing(false);
+    }
+  };
 
   return (
     <footer className="bg-primary text-primary-foreground">
@@ -62,17 +123,24 @@ const Footer = () => {
             <p className="text-primary-foreground/80 mb-8 text-lg">
               Get monthly updates on our programs, success stories, and ways to get involved.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <Input 
-                type="email" 
+            <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+              <Input
+                type="email"
                 placeholder="Enter your email address"
                 className="bg-white/10 border-white/20 text-primary-foreground placeholder:text-primary-foreground/60 focus:bg-white/20"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={isSubscribing}
               />
-              <Button className="bg-secondary hover:bg-secondary/90 text-secondary-foreground">
-                Subscribe
+              <Button
+                className="bg-secondary hover:bg-secondary/90 text-secondary-foreground"
+                type="submit"
+                disabled={isSubscribing}
+              >
+                {isSubscribing ? "Subscribing..." : "Subscribe"}
                 <Mail className="ml-2 h-4 w-4" />
               </Button>
-            </div>
+            </form>
             <p className="text-xs text-primary-foreground/60 mt-3">
               We respect your privacy. Unsubscribe at any time.
             </p>
@@ -92,26 +160,54 @@ const Footer = () => {
               <span className="text-2xl font-bold">Aparigraha Foundation</span>
             </div>
             <p className="text-primary-foreground/80 mb-6 leading-relaxed">
-              Empowering communities worldwide through sustainable education, healthcare, 
+              Empowering communities worldwide through sustainable education, healthcare,
               and development programs that create lasting positive change.
             </p>
-            
-            {/* Contact Info */}
+
+            {/* Donate Buttons */}
+            <div className="flex flex-col gap-2 mb-6">
+              <Button
+                className="w-full bg-secondary hover:bg-secondary/90 text-secondary-foreground"
+                onClick={() => setShowDonationModal(true)}
+              >
+                <Heart className="mr-2 h-4 w-4" />
+                Donate Now
+              </Button>
+              <Button
+                variant="outline"
+                className="w-full border-secondary text-secondary-dark hover:bg-secondary/10"
+                onClick={() => setShowRecurringModal(true)}
+              >
+                Setup AutoPay
+              </Button>
+            </div>
+
+            {/* Contact Info - updated per Aparigraha email */}
             <div className="space-y-3">
               <div className="flex items-start space-x-3">
-                <MapPin className="h-5 w-5 text-secondary mt-0.5" />
+                <Phone className="h-5 w-5 text-secondary mt-0.5" />
                 <div className="text-sm">
-                  <p>1234 Hope Street</p>
-                  <p>New York, NY 10001</p>
+                  <p>Contact us - +91 91363 56135</p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
-                <Phone className="h-5 w-5 text-secondary" />
-                <span className="text-sm">+1 (555) 123-4567</span>
+                <Mail className="h-5 w-5 text-secondary" />
+                <span className="text-sm">Email - help@aparigrahafoundation.com</span>
+              </div>
+              <div className="flex items-start space-x-3">
+                <MapPin className="h-5 w-5 text-secondary mt-0.5" />
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=33+Ground+Floor+Citi+Mall+Oshiwara+Link+Road+Andheri+West+Mumbai+400053"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm hover:underline"
+                >
+                  33, Ground Floor, Citi Mall, Oshiwara Link Road, Andheri (W), Mumbai - 400053
+                </a>
               </div>
               <div className="flex items-center space-x-3">
-                <Mail className="h-5 w-5 text-secondary" />
-                <span className="text-sm">info@hopefoundation.org</span>
+                <Calendar className="h-5 w-5 text-secondary" />
+                <span className="text-sm">Office hours - Monday to Sunday 10:00 am to 8:00 pm</span>
               </div>
             </div>
 
@@ -121,6 +217,8 @@ const Footer = () => {
                 <a
                   key={social.label}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 bg-white/10 hover:bg-secondary rounded-lg flex items-center justify-center transition-colors"
                   aria-label={social.label}
                 >
@@ -209,6 +307,25 @@ const Footer = () => {
           </div>
         </div>
       </div>
+
+      <DonationModal
+        open={showDonationModal}
+        onClose={() => setShowDonationModal(false)}
+        initialAmount={100}
+        isRecurring={false}
+      />
+
+      <DonationModal
+        open={showRecurringModal}
+        onClose={() => setShowRecurringModal(false)}
+        initialAmount={50}
+        isRecurring={true}
+      />
+
+      <ContactForm
+        open={showContactForm}
+        onClose={() => setShowContactForm(false)}
+      />
     </footer>
   );
 };

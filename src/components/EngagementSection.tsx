@@ -1,28 +1,42 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import ContactForm from "@/components/ContactForm";
+import DonationModal from "@/components/DonationModal";
+import VolunteerForm from "@/components/VolunteerForm";
 import { Badge } from "@/components/ui/badge";
-import { Heart, Users, Building, Calendar, ArrowRight, Mail, Phone, MapPin } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { ArrowRight, Calendar, Heart, Mail, MapPin, Phone, Users } from "lucide-react";
+import { useState } from "react";
 
 const EngagementSection = () => {
+  const [showDonationModal, setShowDonationModal] = useState(false);
+  const [showRecurringModal, setShowRecurringModal] = useState(false);
+  const [showVolunteerForm, setShowVolunteerForm] = useState(false);
+  const [showContactForm, setShowContactForm] = useState(false);
+  const [contactFormSubject, setContactFormSubject] = useState("");
+  const [contactFormMessage, setContactFormMessage] = useState("");
+  const [selectedOpportunity, setSelectedOpportunity] = useState("");
+  const [selectedAmount, setSelectedAmount] = useState<number>(50);
+  const [isRecurring, setIsRecurring] = useState<boolean>(false);
+
   const donationOptions = [
     {
-      amount: "₹2,000",
+      amount: 25,
       impact: "Provides school supplies for 5 children",
       popular: false
     },
     {
-      amount: "₹5,000",
+      amount: 50,
       impact: "Funds clean water for a family for 6 months",
       popular: true
     },
     {
-      amount: "₹10,000",
+      amount: 100,
       impact: "Sponsors a child's education for one semester",
       popular: false
     },
     {
-      amount: "₹50,000",
+      amount: 250,
       impact: "Builds a well that serves an entire village",
       popular: false
     }
@@ -52,37 +66,41 @@ const EngagementSection = () => {
     }
   ];
 
-  const partnershipTiers = [
-    {
-      title: "Community Partner",
-      amount: "₹25,000+",
-      benefits: [
-        "Quarterly impact reports",
-        "Recognition on website",
-        "Tax-deductible receipt"
-      ]
-    },
-    {
-      title: "Impact Partner",
-      amount: "₹1,00,000+",
-      benefits: [
-        "All Community Partner benefits",
-        "Site visit opportunity",
-        "Custom impact dashboard",
-        "Direct beneficiary updates"
-      ]
-    },
-    {
-      title: "Transformational Partner",
-      amount: "₹2,50,000+",
-      benefits: [
-        "All Impact Partner benefits",
-        "Program naming opportunity",
-        "Board meeting invitations",
-        "Executive briefings"
-      ]
+  const handleDonationClick = (amount: number) => {
+    setSelectedAmount(amount);
+    setIsRecurring(false);
+    setShowDonationModal(true);
+  };
+
+  const handleRecurringClick = (amount: number) => {
+    setSelectedAmount(amount);
+    setIsRecurring(true);
+    setShowRecurringModal(true);
+  };
+
+  const handleCustomDonationClick = () => {
+    const customAmountInput = document.getElementById('custom-amount') as HTMLInputElement;
+    if (customAmountInput && customAmountInput.value) {
+      setSelectedAmount(Number(customAmountInput.value));
     }
-  ];
+    setIsRecurring(false);
+    setShowDonationModal(true);
+  };
+
+  const handleCustomRecurringClick = () => {
+    const customAmountInput = document.getElementById('custom-amount') as HTMLInputElement;
+    if (customAmountInput && customAmountInput.value) {
+      setSelectedAmount(Number(customAmountInput.value));
+    }
+    setIsRecurring(true);
+    setShowRecurringModal(true);
+  };
+
+  const handleVolunteerClick = (opportunityTitle: string) => {
+    setSelectedOpportunity(opportunityTitle);
+    setShowVolunteerForm(true);
+  };
+
 
   return (
     <section id="get-involved" className="section-padding">
@@ -96,7 +114,7 @@ const EngagementSection = () => {
             Join Our Mission
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            There are many ways to support our work and create lasting change. 
+            There are many ways to support our work and create lasting change.
             Whether through donations, volunteering, or partnerships, your contribution matters.
           </p>
         </div>
@@ -120,23 +138,32 @@ const EngagementSection = () => {
                   <h4 className="font-semibold mb-4">Choose an amount:</h4>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                     {donationOptions.map((option) => (
-                      <Button
-                        key={option.amount}
-                        variant={option.popular ? "default" : "outline"}
-                        className={`relative flex-col h-auto p-4 text-wrap ${
-                          option.popular ? "ring-2 ring-secondary" : ""
-                        }`}
-                      >
-                        {option.popular && (
-                          <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-secondary text-secondary-foreground">
-                            Popular
-                          </Badge>
-                        )}
-                        <span className="text-lg font-bold">{option.amount}</span>
-                        <span className="text-xs text-center mt-1 opacity-80">
-                          {option.impact}
-                        </span>
-                      </Button>
+                      <div key={option.amount} className="flex flex-col gap-2">
+                        <Button
+                          variant={option.popular ? "default" : "outline"}
+                          className={`relative flex-col h-auto p-4 text-wrap ${option.popular ? "ring-2 ring-secondary" : ""
+                            }`}
+                          onClick={() => handleDonationClick(option.amount)}
+                        >
+                          {option.popular && (
+                            <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-secondary text-secondary-foreground">
+                              Popular
+                            </Badge>
+                          )}
+                          <span className="text-lg font-bold">₹{option.amount}</span>
+                          <span className="text-xs text-center mt-1 opacity-80">
+                            {option.impact}
+                          </span>
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="text-xs h-8"
+                          onClick={() => handleRecurringClick(option.amount)}
+                        >
+                          Make it monthly
+                        </Button>
+                      </div>
                     ))}
                   </div>
                 </div>
@@ -146,11 +173,31 @@ const EngagementSection = () => {
                   <h4 className="font-semibold mb-3">Or enter a custom amount:</h4>
                   <div className="flex space-x-3">
                     <div className="flex-1">
-                      <Input type="number" placeholder="Enter amount" className="text-lg" />
+                      <Input
+                        type="number"
+                        placeholder="Enter amount"
+                        className="text-lg"
+                        id="custom-amount"
+                        min="10"
+                      />
                     </div>
-                    <Button className="btn-hero">
+                    <Button
+                      className="btn-hero"
+                      id="custom-amount-btn"
+                      onClick={handleCustomDonationClick}
+                    >
                       Donate Now
                       <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </div>
+                  <div className="mt-2">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="text-xs h-8"
+                      onClick={handleCustomRecurringClick}
+                    >
+                      Setup monthly donation
                     </Button>
                   </div>
                 </div>
@@ -161,7 +208,15 @@ const EngagementSection = () => {
                   <p className="text-sm text-muted-foreground mb-3">
                     Monthly donations help us plan long-term projects and provide stable support to communities.
                   </p>
-                  <Button variant="outline" size="sm">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      setSelectedAmount(50); // Default to ₹50 for monthly
+                      setIsRecurring(true);
+                      setShowRecurringModal(true);
+                    }}
+                  >
                     Set up Monthly Donation
                   </Button>
                 </div>
@@ -178,7 +233,7 @@ const EngagementSection = () => {
               <CardContent>
                 <div className="space-y-4">
                   <div className="text-center p-4 bg-primary/5 rounded-lg">
-                    <div className="text-3xl font-bold text-primary mb-2">₹6000</div>
+                    <div className="text-3xl font-bold text-primary mb-2">₹50</div>
                     <div className="text-sm text-muted-foreground">Your donation could provide:</div>
                     <ul className="text-sm mt-2 space-y-1">
                       <li>✓ Clean water for 1 family (6 months)</li>
@@ -187,7 +242,7 @@ const EngagementSection = () => {
                     </ul>
                   </div>
                   <div className="text-xs text-muted-foreground text-center">
-                    95% of every single rupee goes directly to the programs
+                    95% of every rupee goes directly to programs
                   </div>
                 </div>
               </CardContent>
@@ -235,7 +290,11 @@ const EngagementSection = () => {
                       ))}
                     </ul>
                   </div>
-                  <Button variant="outline" className="w-full">
+                  <Button
+                    variant="outline"
+                    className="w-full"
+                    onClick={() => handleVolunteerClick(opportunity.title)}
+                  >
                     Apply to Volunteer
                   </Button>
                 </CardContent>
@@ -243,46 +302,47 @@ const EngagementSection = () => {
             ))}
           </div>
         </div>
-
-        {/* Corporate Partnerships */}
-        <div className="fade-in-up">
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold mb-4 flex items-center justify-center">
-              <Building className="h-8 w-8 text-secondary mr-3" />
-              Corporate & Institutional Partnerships
-            </h3>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Partner with us to align your organization's values with meaningful social impact while also engaging your stakeholders.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {partnershipTiers.map((tier, index) => (
-              <Card key={tier.title} className={`program-card text-center ${
-                index === 1 ? "ring-2 ring-secondary scale-105" : ""
-              }`}>
-                <CardHeader>
-                  <CardTitle className="text-xl">{tier.title}</CardTitle>
-                  <div className="text-2xl font-bold text-primary">{tier.amount}</div>
-                  <p className="text-sm text-muted-foreground">annually</p>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-3 mb-6">
-                    {tier.benefits.map((benefit, i) => (
-                      <li key={i} className="flex items-center text-sm">
-                        <span className="w-2 h-2 bg-accent rounded-full mr-3"></span>
-                        {benefit}
-                      </li>
-                    ))}
-                  </ul>
-                  <Button variant="outline" className="w-full">
-                    Become a Partner
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
       </div>
+
+      <DonationModal
+        open={showDonationModal}
+        onClose={() => setShowDonationModal(false)}
+        onSuccess={() => {
+          // Reset to default amount after successful donation
+          setSelectedAmount(50);
+        }}
+        initialAmount={selectedAmount}
+        isRecurring={false}
+      />
+
+      <DonationModal
+        open={showRecurringModal}
+        onClose={() => setShowRecurringModal(false)}
+        onSuccess={() => {
+          // Reset to default amount after successful donation
+          setSelectedAmount(50);
+        }}
+        initialAmount={selectedAmount}
+        isRecurring={true}
+      />
+
+      <VolunteerForm
+        open={showVolunteerForm}
+        onClose={() => setShowVolunteerForm(false)}
+        opportunityTitle={selectedOpportunity}
+      />
+
+      <ContactForm
+        open={showContactForm}
+        onClose={() => {
+          setShowContactForm(false);
+          // Reset form data
+          setContactFormSubject("");
+          setContactFormMessage("");
+        }}
+        initialSubject={contactFormSubject}
+        initialMessage={contactFormMessage}
+      />
     </section>
   );
 };
