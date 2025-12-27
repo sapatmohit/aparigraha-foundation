@@ -1,8 +1,13 @@
-import communityImage from "@/assets/community-impact.jpg";
-import educationImage from "@/assets/education-impact.jpg";
+// Images from public folder for deployment
+const educationImage = "/images/programs/aursunao.png";
+const mealtohealImage = "/images/programs/mealtoheal.jpg";
+const gowiththeflowImage = "/images/programs/gowiththeflow.png";
+const rootforo2Image = "/images/programs/rootforO2.jpg";
+const storyoffrontlineImage = "/images/programs/storyoffrontlinewarriors.png";
+const communityImage = "/images/programs/indradhanush.png";
+const pragyaImage = "/images/programs/pragya.jpg";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,7 +24,6 @@ import {
   TrendingUp,
   Users
 } from "lucide-react";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
 // Define the program type
@@ -106,7 +110,7 @@ const ProgramsSection = () => {
       id: "mealtoheal",
       title: "Meal To Heal",
       description: "Weekly Food Drive carried out at various cities across India for the needy. Meals distributed at various shelter homes and care clinics for sick and elderly. Volunteers prepare age-appropriate nutritive meals per medical requirements.",
-      image: "/images/programs/mealtoheal.jpg",
+      image: mealtohealImage,
       icon: ArrowRight,
       stats: {
         meals: "150,000+"
@@ -123,7 +127,7 @@ const ProgramsSection = () => {
       impact: {
         title: "Feeding Hope",
         description: "Over 150,000 meals distributed across Indian states.",
-        image: "/images/programs/mealtoheal.jpg",
+        image: mealtohealImage,
       },
       getInvolved: {
         title: "Ways to Get Involved",
@@ -138,7 +142,7 @@ const ProgramsSection = () => {
       id: "gowiththeflow",
       title: "Go With The Flow",
       description: "Sanitary Pad Drive Donation and menstrual hygiene education. Objective to provide sanitary pad kits and education PAN India; note distribution to remand homes.",
-      image: "/images/programs/gowiththeflow.jpg",
+      image: gowiththeflowImage,
       icon: Target,
       stats: {
         beneficiaries: "—"
@@ -155,7 +159,7 @@ const ProgramsSection = () => {
       impact: {
         title: "Sanitary Access",
         description: "Distribution of sanitary kits and menstrual hygiene education across remand homes and communities.",
-        image: "/images/programs/gowiththeflow.jpg",
+        image: gowiththeflowImage,
       },
       getInvolved: {
         title: "Ways to Get Involved",
@@ -170,7 +174,7 @@ const ProgramsSection = () => {
       id: "rootforo2",
       title: "Root For O2",
       description: "Plantation drives across states, especially post-disasters.",
-      image: "/images/programs/rootforO2.jpg",
+      image: rootforo2Image,
       icon: Home,
       stats: {
         saplings: "100,000+"
@@ -187,7 +191,7 @@ const ProgramsSection = () => {
       impact: {
         title: "Greening Our Future",
         description: "Planted over 100,000 saplings.",
-        image: "/images/programs/rootforO2.jpg"
+        image: rootforo2Image
       },
       getInvolved: {
         title: "Ways to Get Involved",
@@ -202,7 +206,7 @@ const ProgramsSection = () => {
       id: "storyoffrontline",
       title: "Story of FrontLine Warriors",
       description: "FB Live with frontline warriors; Frontline Warriors During COVID-19",
-      image: "/images/programs/storyoffrontline.jpg",
+      image: storyoffrontlineImage,
       icon: Users,
       stats: {
         sessions: "—"
@@ -219,7 +223,7 @@ const ProgramsSection = () => {
       impact: {
         title: "Frontline Stories",
         description: "Frontline Warriors During COVID-19",
-        image: "/images/programs/storyoffrontline.jpg"
+        image: storyoffrontlineImage
       },
       getInvolved: {
         title: "Ways to Get Involved",
@@ -281,7 +285,7 @@ const ProgramsSection = () => {
       id: "pragya",
       title: "Pragya",
       description: "Improving healthcare accessibility and quality in remote and underserved areas.",
-      image: "/images/programs/pragya.jpg",
+      image: pragyaImage,
       icon: Heart,
       stats: {
         beneficiaries: "7.5 K+",
@@ -303,7 +307,7 @@ const ProgramsSection = () => {
       impact: {
         title: "Bringing Healthcare to Remote Areas",
         description: "Our healthcare program has established 50 mobile clinics, trained 200 healthcare professionals, and provided medical care to over 7.5 K+ people in remote areas. We've implemented preventive health programs that have reduced disease incidence by 40% in our service areas.",
-        image:"/images/programs/pragya.jpg"
+        image: pragyaImage
       },
       getInvolved: {
         title: "Ways to Get Involved",

@@ -1,6 +1,8 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useState, useEffect, useCallback } from "react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 const videos = [
   { id: "Edg4oS5Gni0", title: "Story of Front Line Warrior Series - Episode 1 - Dr Bindal Vala", date: "May 11, 2021" },
@@ -15,6 +17,35 @@ const videos = [
 const galleryImages = Array.from({ length: 42 }, (_, i) => `/images/gallary/gallary${i + 1}.jpg`);
 
 export default function NewsSection() {
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+
+  const openLightbox = (index: number) => setSelectedImageIndex(index);
+  const closeLightbox = () => setSelectedImageIndex(null);
+
+  const goToPrevious = useCallback(() => {
+    if (selectedImageIndex !== null) {
+      setSelectedImageIndex(selectedImageIndex === 0 ? galleryImages.length - 1 : selectedImageIndex - 1);
+    }
+  }, [selectedImageIndex]);
+
+  const goToNext = useCallback(() => {
+    if (selectedImageIndex !== null) {
+      setSelectedImageIndex(selectedImageIndex === galleryImages.length - 1 ? 0 : selectedImageIndex + 1);
+    }
+  }, [selectedImageIndex]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (selectedImageIndex === null) return;
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") goToPrevious();
+      if (e.key === "ArrowRight") goToNext();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedImageIndex, goToPrevious, goToNext]);
+
   return (
     <section className="py-16 px-6 md:px-16 bg-background text-foreground" id="multimedia">
       <div className="text-center mb-12">
@@ -62,8 +93,17 @@ export default function NewsSection() {
 
           {/* Sample Gallery Images in All Tab */}
           {galleryImages.slice(0, 3).map((src, index) => (
-            <Card key={index} className="overflow-hidden cursor-pointer hover:shadow-medium transition-all duration-300">
-              <img src={src} alt={`Gallery ${index + 1}`} className="w-full h-48 object-cover" />
+            <Card 
+              key={index} 
+              className="overflow-hidden cursor-pointer hover:shadow-medium transition-all duration-300 group"
+              onClick={() => openLightbox(index)}
+            >
+              <div className="relative">
+                <img src={src} alt={`Gallery ${index + 1}`} className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                  <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity text-sm font-medium">Click to expand</span>
+                </div>
+              </div>
               <CardContent className="p-4">
                 <Badge variant="outline" className="mb-2 text-xs">Image</Badge>
                 <h4 className="font-medium text-sm">Gallery Photo {index + 1}</h4>
@@ -106,12 +146,66 @@ export default function NewsSection() {
         {/* IMAGES TAB */}
         <TabsContent value="images" className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {galleryImages.map((src, index) => (
-            <Card key={index} className="overflow-hidden cursor-pointer hover:shadow-medium transition-all duration-300">
-              <img src={src} alt={`Gallery ${index + 1}`} className="w-full h-48 object-cover" />
+            <Card 
+              key={index} 
+              className="overflow-hidden cursor-pointer hover:shadow-medium transition-all duration-300 group"
+              onClick={() => openLightbox(index)}
+            >
+              <div className="relative">
+                <img src={src} alt={`Gallery ${index + 1}`} className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                  <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity text-sm font-medium">Click to expand</span>
+                </div>
+              </div>
             </Card>
           ))}
         </TabsContent>
       </Tabs>
+
+      {/* Lightbox Modal */}
+      {selectedImageIndex !== null && (
+        <div 
+          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center"
+          onClick={closeLightbox}
+        >
+          {/* Close Button */}
+          <button 
+            className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors z-50"
+            onClick={closeLightbox}
+          >
+            <X className="w-8 h-8" />
+          </button>
+
+          {/* Previous Button */}
+          <button 
+            className="absolute left-4 text-white hover:text-gray-300 transition-colors z-50 p-2 rounded-full bg-black/50 hover:bg-black/70"
+            onClick={(e) => { e.stopPropagation(); goToPrevious(); }}
+          >
+            <ChevronLeft className="w-8 h-8" />
+          </button>
+
+          {/* Image */}
+          <img 
+            src={galleryImages[selectedImageIndex]} 
+            alt={`Gallery ${selectedImageIndex + 1}`}
+            className="max-w-[90vw] max-h-[90vh] object-contain"
+            onClick={(e) => e.stopPropagation()}
+          />
+
+          {/* Next Button */}
+          <button 
+            className="absolute right-4 text-white hover:text-gray-300 transition-colors z-50 p-2 rounded-full bg-black/50 hover:bg-black/70"
+            onClick={(e) => { e.stopPropagation(); goToNext(); }}
+          >
+            <ChevronRight className="w-8 h-8" />
+          </button>
+
+          {/* Image Counter */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white text-sm bg-black/50 px-4 py-2 rounded-full">
+            {selectedImageIndex + 1} / {galleryImages.length}
+          </div>
+        </div>
+      )}
     </section>
   );
 }

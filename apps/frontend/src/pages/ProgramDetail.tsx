@@ -1,5 +1,11 @@
-import communityImage from "@/assets/community-impact.jpg";
-import educationImage from "@/assets/education-impact.jpg";
+// Images from public folder for deployment
+const educationImage = "/images/programs/aursunao.png";
+const communityImage = "/images/programs/indradhanush.png";
+const pragyaImage = "/images/programs/pragya.jpg";
+const mealtohealImage = "/images/programs/mealtoheal.jpg";
+const gowiththeflowImage = "/images/programs/gowiththeflow.png";
+const rootforo2Image = "/images/programs/rootforO2.jpg";
+const storyoffrontlineImage = "/images/programs/storyoffrontlinewarriors.png";
 import ContactForm from "@/components/ContactForm";
 import DonationModal from "@/components/DonationModal";
 import { Badge } from "@/components/ui/badge";
@@ -123,7 +129,7 @@ const ProgramDetail = () => {
       id: "pragya",
       title: "Pragya",
       description: "Improving healthcare accessibility and quality in remote and underserved areas.",
-      image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=600&fit=crop",
+      image: pragyaImage,
       icon: Heart,
       stats: {
         beneficiaries: "7.5 K+",
@@ -143,7 +149,7 @@ const ProgramDetail = () => {
       impact: {
         title: "Bringing Healthcare to Remote Areas",
         description: "Our healthcare program has established 50 mobile clinics, trained 200 healthcare professionals, and provided medical care to over 7.5 K+ people in remote areas. We've implemented preventive health programs that have reduced disease incidence by 40% in our service areas.",
-        image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=600&fit=crop"
+        image: pragyaImage
       },
       getInvolved: {
         title: "Ways to Get Involved",
@@ -170,7 +176,7 @@ const ProgramDetail = () => {
       id: "mealtoheal",
       title: "Meal To Heal",
       description: "Weekly Food Drive carried out at various cities across India for the needy. Meals distributed at various shelter homes and care clinics for sick and elderly.",
-      image: educationImage,
+      image: mealtohealImage,
       icon: Heart,
       stats: {
         beneficiaries: "150,000+",
@@ -212,7 +218,7 @@ const ProgramDetail = () => {
       id: "gowiththeflow",
       title: "Go With The Flow",
       description: "Sanitary Pad Drive Donation and menstrual hygiene education across India.",
-      image: communityImage,
+      image: gowiththeflowImage,
       icon: Users,
       stats: {
         beneficiaries: "Thousands",
@@ -254,7 +260,7 @@ const ProgramDetail = () => {
       id: "rootforo2",
       title: "Root For O2",
       description: "Plantation drives across states, especially post-disasters, to restore ecological balance.",
-      image: communityImage,
+      image: rootforo2Image,
       icon: Home,
       stats: {
         saplings: "100,000+",
@@ -296,7 +302,7 @@ const ProgramDetail = () => {
       id: "storyoffrontline",
       title: "Story of FrontLine Warriors",
       description: "Honoring and supporting frontline workers through live sessions and community engagement.",
-      image: educationImage,
+      image: storyoffrontlineImage,
       icon: Users,
       stats: {
         sessions: "Multiple",
