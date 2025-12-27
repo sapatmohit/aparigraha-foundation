@@ -124,9 +124,9 @@ const EngagementSection = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-16 mb-20">
+        <div className="mb-20">
           {/* Donation Section */}
-          <div className="lg:col-span-2">
+          <div>
             <Card className="impact-card fade-in-up">
               <CardHeader>
                 <CardTitle className="flex items-center text-2xl">
