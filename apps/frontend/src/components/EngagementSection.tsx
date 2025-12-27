@@ -146,7 +146,7 @@ const EngagementSection = () => {
                       <div key={option.amount} className="flex flex-col gap-2">
                         <Button
                           variant={option.popular ? "default" : "outline"}
-                          className={`relative flex-col h-[240px] p-4 text-wrap ${option.popular ? "ring-2 ring-secondary" : ""
+                          className={`relative flex-col h-[120px] p-4 text-wrap ${option.popular ? "ring-2 ring-secondary" : ""
                             }`}
                           onClick={() => handleDonationClick(option.amount)}
                         >
