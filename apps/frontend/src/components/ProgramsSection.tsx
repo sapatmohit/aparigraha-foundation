@@ -106,7 +106,7 @@ const ProgramsSection = () => {
       id: "mealtoheal",
       title: "Meal To Heal",
       description: "Weekly Food Drive carried out at various cities across India for the needy. Meals distributed at various shelter homes and care clinics for sick and elderly. Volunteers prepare age-appropriate nutritive meals per medical requirements.",
-      image: "/images/programs/mealtoheal.jpg",
+      image: "/images/programs/mealToheal.jpg",
       icon: ArrowRight,
       stats: {
         meals: "150,000+"
@@ -138,7 +138,7 @@ const ProgramsSection = () => {
       id: "gowiththeflow",
       title: "Go With The Flow",
       description: "Sanitary Pad Drive Donation and menstrual hygiene education. Objective to provide sanitary pad kits and education PAN India; note distribution to remand homes.",
-      image: "/images/programs/gowiththeflow.jpg",
+      image: "/images/programs/goWiththeflow.jpg",
       icon: Target,
       stats: {
         beneficiaries: "—"
