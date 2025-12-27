@@ -220,31 +220,6 @@ const EngagementSection = () => {
               </CardContent>
             </Card>
           </div>
-
-          {/* Quick Impact */}
-          <div className="fade-in-up stagger-1">
-            <Card className="program-card h-full">
-              <CardHeader>
-                <CardTitle className="text-lg">Impact Calculator</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div className="text-center p-4 bg-primary/5 rounded-lg">
-                    <div className="text-3xl font-bold text-primary mb-2">₹50</div>
-                    <div className="text-sm text-muted-foreground">Your donation could provide:</div>
-                    <ul className="text-sm mt-2 space-y-1">
-                      <li>✓ Clean water for 1 family (6 months)</li>
-                      <li>✓ School meals for 10 children (1 week)</li>
-                      <li>✓ Medical supplies for 5 patients</li>
-                    </ul>
-                  </div>
-                  <div className="text-xs text-muted-foreground text-center">
-                    95% of every rupee goes directly to programs
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
         </div>
 
         {/* Volunteer Opportunities */}
