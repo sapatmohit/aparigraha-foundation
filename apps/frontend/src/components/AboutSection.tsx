@@ -60,6 +60,13 @@ const AboutSection = () => {
       image: "/images/team/geeta.jpg",
       bio: "Entrepreneur and social-impact leader experienced in project delivery, women’s empowerment and community development."
     }
+
+      {
+      name: "Ms. Rishika Jain",
+      role: "CEO",
+      image: "/images/team/rishika.jpg",
+      bio: "An inquisitive and driven social empath of International Relations and Law with an interest in diplomacy, human rights and a passion for sustainability"
+    }
   ];
 
   return (
