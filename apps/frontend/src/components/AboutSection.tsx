@@ -59,7 +59,7 @@ const AboutSection = () => {
       role: "Secretary",
       image: "/images/team/geeta.jpg",
       bio: "Entrepreneur and social-impact leader experienced in project delivery, women’s empowerment and community development."
-    }
+    },
 
       {
       name: "Ms. Rishika Jain",
