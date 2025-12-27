@@ -1,4 +1,4 @@
-name: Deploy to Hostinger
+name: Deploy
 
 on:
   push:
@@ -6,24 +6,28 @@ on:
       - production
 
 jobs:
-  build-and-deploy:
+  # Frontend deployment to Hostinger
+  deploy-frontend:
+    name: Deploy Frontend
     runs-on: ubuntu-latest
     
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: apps/frontend/package-lock.json
       
-      - name: Clean install dependencies
-        run: |
-          rm -rf node_modules package-lock.json
-          npm install
+      - name: Install dependencies
+        working-directory: apps/frontend
+        run: npm ci
       
       - name: Build frontend
+        working-directory: apps/frontend
         run: npm run build
         env:
           VITE_RAZORPAY_KEY_ID: ${{ secrets.VITE_RAZORPAY_KEY_ID }}
@@ -31,7 +35,7 @@ jobs:
       
       - name: Create .htaccess for React routing
         run: |
-          cat > dist/.htaccess << 'EOF'
+          cat > apps/frontend/dist/.htaccess << 'EOF'
           <IfModule mod_rewrite.c>
             RewriteEngine On
             RewriteBase /
@@ -40,30 +44,47 @@ jobs:
             RewriteCond %{REQUEST_FILENAME} !-f
             RewriteCond %{REQUEST_FILENAME} !-d
             
-            # Don't rewrite API calls
-            RewriteCond %{REQUEST_URI} !^/api/
-            
             # Rewrite everything else to index.html
             RewriteRule . /index.html [L]
           </IfModule>
           EOF
       
-      - name: Deploy Frontend to Hostinger via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      - name: Deploy to Hostinger via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./dist/
+          local-dir: ./apps/frontend/dist/
           server-dir: /public_html/
           dangerous-clean-slate: false
+
+  # Backend deployment to Cloudflare Workers
+  deploy-backend:
+    name: Deploy Backend
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
       
-      - name: Deploy API to Hostinger via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./api/
-          server-dir: /public_html/api/
-          dangerous-clean-slate: false
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: apps/backend/package-lock.json
+      
+      - name: Install dependencies
+        working-directory: apps/backend
+        run: npm ci
+      
+      - name: Run tests
+        working-directory: apps/backend
+        run: npm test
+      
+      - name: Deploy to Cloudflare Workers
+        working-directory: apps/backend
+        run: npx wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

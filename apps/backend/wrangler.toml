@@ -1,0 +1,12 @@
+name = "aparigraha-api"
+main = "src/index.ts"
+compatibility_date = "2024-12-01"
+
+[vars]
+ENVIRONMENT = "production"
+
+# Secrets are configured via `wrangler secret put`:
+# - RAZORPAY_KEY_ID
+# - RAZORPAY_KEY_SECRET
+# - RAZORPAY_WEBHOOK_SECRET
+# - RESEND_API_KEY

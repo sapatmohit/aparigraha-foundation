@@ -4,11 +4,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
@@ -83,7 +83,7 @@ const ContactSection = () => {
       console.log("Contact form submitted:", formData);
 
       const backendUrl = import.meta.env.VITE_BACKEND_URL || window.location.origin;
-      const response = await fetch(`${backendUrl}/api/send-contact.php`, {
+      const response = await fetch(`${backendUrl}/api/send-contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

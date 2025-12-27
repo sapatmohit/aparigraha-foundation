@@ -5,12 +5,13 @@ vendor/
 # Build output
 dist/
 deploy/
+.wrangler/
 
 # Environment variables (NEVER COMMIT!)
 .env
 .env.local
 .env.production
-api/.env
+apps/backend/.dev.vars
 
 # Logs
 logs
@@ -52,3 +53,6 @@ dist-ssr
 # SSH keys
 hostinger_deploy_key
 hostinger_deploy_key.pub
+
+# Legacy PHP API (now moved to Cloudflare Workers)
+api/

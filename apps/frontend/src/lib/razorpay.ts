@@ -89,7 +89,7 @@ class RazorpayService {
     try {
       // creating order from backend
       const backendUrl = import.meta.env.VITE_BACKEND_URL || window.location.origin;
-      const response = await fetch(`${backendUrl}/api/create-order.php`, {
+      const response = await fetch(`${backendUrl}/api/create-order`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -144,7 +144,7 @@ class RazorpayService {
   async createSubscriptionPlan(amount: number, currency: string = "INR"): Promise<string> {
     try {
       const backendUrl = import.meta.env.VITE_BACKEND_URL || window.location.origin;
-      const response = await fetch(`${backendUrl}/api/create-subscription.php`, {
+      const response = await fetch(`${backendUrl}/api/create-subscription`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
