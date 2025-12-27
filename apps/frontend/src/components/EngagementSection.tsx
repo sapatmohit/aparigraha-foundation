@@ -21,23 +21,28 @@ const EngagementSection = () => {
 
   const donationOptions = [
     {
-      amount: 25,
-      impact: "Provides school supplies for 5 children",
+      amount: 50,
+      impact: "Provide 1 plate of nashta and tea/ milk/ coffee",
       popular: false
     },
     {
-      amount: 50,
-      impact: "Funds clean water for a family for 6 months",
+      amount: 120,
+      impact: "Provide 1 plate of lunch / dinner",
       popular: true
     },
     {
-      amount: 100,
-      impact: "Sponsors a child's education for one semester",
+      amount: 500,
+      impact: "Provide 1 packet of sanitary pads for 1 girl / woman ",
       popular: false
     },
     {
-      amount: 250,
-      impact: "Builds a well that serves an entire village",
+      amount: 800,
+      impact: "Provide utilities for 1 person",
+      popular: false
+    },
+    {
+      amount: 1000,
+      impact: "Provide 1 packet of adult diapers",
       popular: false
     }
   ];
@@ -141,7 +146,7 @@ const EngagementSection = () => {
                       <div key={option.amount} className="flex flex-col gap-2">
                         <Button
                           variant={option.popular ? "default" : "outline"}
-                          className={`relative flex-col h-auto p-4 text-wrap ${option.popular ? "ring-2 ring-secondary" : ""
+                          className={`relative flex-col h-[240px] p-4 text-wrap ${option.popular ? "ring-2 ring-secondary" : ""
                             }`}
                           onClick={() => handleDonationClick(option.amount)}
                         >
@@ -154,14 +159,6 @@ const EngagementSection = () => {
                           <span className="text-xs text-center mt-1 opacity-80">
                             {option.impact}
                           </span>
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="text-xs h-8"
-                          onClick={() => handleRecurringClick(option.amount)}
-                        >
-                          Make it monthly
                         </Button>
                       </div>
                     ))}
