@@ -281,7 +281,7 @@ const ProgramsSection = () => {
       id: "pragya",
       title: "Pragya",
       description: "Improving healthcare accessibility and quality in remote and underserved areas.",
-      image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=600&fit=crop",
+      image: "/images/programs/pragya.jpg",
       icon: Heart,
       stats: {
         beneficiaries: "7.5 K+",
@@ -303,7 +303,7 @@ const ProgramsSection = () => {
       impact: {
         title: "Bringing Healthcare to Remote Areas",
         description: "Our healthcare program has established 50 mobile clinics, trained 200 healthcare professionals, and provided medical care to over 7.5 K+ people in remote areas. We've implemented preventive health programs that have reduced disease incidence by 40% in our service areas.",
-        image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=600&fit=crop"
+        image:"/images/programs/pragya.jpg"
       },
       getInvolved: {
         title: "Ways to Get Involved",
