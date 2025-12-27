@@ -54,5 +54,5 @@ dist-ssr
 hostinger_deploy_key
 hostinger_deploy_key.pub
 
-# Legacy PHP API (now moved to Cloudflare Workers)
-api/
+# FTP deploy script (contains credentials)
+deploy-ftp.js

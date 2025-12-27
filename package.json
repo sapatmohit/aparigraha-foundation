@@ -13,5 +13,8 @@
     "deploy:backend": "npm run deploy -w @aparigraha/backend",
     "test:backend": "npm run test -w @aparigraha/backend",
     "lint": "npm run lint -w @aparigraha/frontend"
+  },
+  "devDependencies": {
+    "ftp-deploy": "^2.4.7"
   }
 }
