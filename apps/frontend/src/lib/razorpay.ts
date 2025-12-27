@@ -58,84 +58,138 @@ declare global {
 
 class RazorpayService {
   private keyId: string;
+  private scriptLoaded: boolean = false;
+  private scriptLoadingPromise: Promise<boolean> | null = null;
 
   constructor(keyId: string) {
     this.keyId = keyId;
   }
 
+  /**
+   * Load Razorpay script with caching to prevent multiple loads
+   */
   loadScript(): Promise<boolean> {
-    return new Promise((resolve) => {
-      // Check if script is already loaded
-      if (typeof window.Razorpay !== 'undefined') {
-        resolve(true);
-        return;
-      }
+    // Return cached promise if already loading/loaded
+    if (this.scriptLoadingPromise) {
+      return this.scriptLoadingPromise;
+    }
 
+    // Check if script is already loaded
+    if (typeof window.Razorpay !== 'undefined') {
+      this.scriptLoaded = true;
+      return Promise.resolve(true);
+    }
+
+    this.scriptLoadingPromise = new Promise((resolve) => {
       const script = document.createElement('script');
       script.src = 'https://checkout.razorpay.com/v1/checkout.js';
-      script.onload = () => resolve(true);
-      script.onerror = () => resolve(false);
+      script.async = true;
+      script.onload = () => {
+        this.scriptLoaded = true;
+        resolve(true);
+      };
+      script.onerror = () => {
+        this.scriptLoadingPromise = null; // Reset to allow retry
+        resolve(false);
+      };
       document.body.appendChild(script);
     });
+
+    return this.scriptLoadingPromise;
+  }
+
+  /**
+   * Preload script for faster payment initialization
+   */
+  preloadScript(): void {
+    this.loadScript().catch(() => {});
   }
 
   async initializePayment(options: Omit<RazorpayPaymentOptions, 'key'>): Promise<RazorpayResponse | null> {
     const isScriptLoaded = await this.loadScript();
     if (!isScriptLoaded) {
       console.error('Failed to load Razorpay SDK');
-      return null;
+      throw new Error('Failed to load Razorpay SDK');
     }
 
-    try {
-      // creating order from backend
-      const backendUrl = import.meta.env.VITE_BACKEND_URL || window.location.origin;
-      const response = await fetch(`${backendUrl}/api/create-order`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+    // Create order from backend
+    const backendUrl = import.meta.env.VITE_BACKEND_URL || window.location.origin;
+    const response = await fetch(`${backendUrl}/api/create-order`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        amount: options.amount / 100,
+        currency: options.currency,
+      }),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('Order creation failed:', errorText);
+      throw new Error('Failed to create order');
+    }
+
+    const order = await response.json();
+
+    return new Promise((resolve, reject) => {
+      const { handler, ...restOptions } = options;
+      
+      const rzp = new window.Razorpay({
+        key: this.keyId,
+        ...restOptions,
+        order_id: order.id,
+        handler: (response: RazorpayResponse) => {
+          // Call original handler if provided
+          if (handler) {
+            handler(response);
+          }
+          resolve(response);
         },
-        body: JSON.stringify({
-          amount: options.amount / 100, // Backend expects amount in major units, or we should clarify.
-                                        // Backend code: amount * 100. So backend expects major units.
-                                        // Frontend 'options.amount' is passed as 'amount * 100' (paise) from DonationModal.
-                                        // So we should pass options.amount / 100 to backend.
-          currency: options.currency,
-        }),
-      });
+        modal: {
+          ondismiss: () => {
+            // User closed the modal without completing payment
+            resolve(null);
+          },
+          escape: true,
+          backdropclose: false,
+        },
+      } as RazorpayPaymentOptions & { modal: { ondismiss: () => void; escape: boolean; backdropclose: boolean } });
 
-      if (!response.ok) {
-        throw new Error('Failed to create order');
-      }
-
-      const order = await response.json();
-
-      return new Promise((resolve) => {
-        const rzp = new window.Razorpay({
-          key: this.keyId,
-          ...options,
-          order_id: order.id, // Use the order ID from backend
-        } as RazorpayPaymentOptions);
-
-        rzp.open();
-      });
-    } catch (error) {
-      console.error('Error initializing payment:', error);
-      return null;
-    }
+      rzp.open();
+    });
   }
 
   async initializeSubscription(options: Omit<RazorpaySubscriptionOptions, 'key'>): Promise<RazorpaySubscriptionResponse | null> {
     const isScriptLoaded = await this.loadScript();
     if (!isScriptLoaded) {
       console.error('Failed to load Razorpay SDK');
-      return null;
+      throw new Error('Failed to load Razorpay SDK');
     }
 
     return new Promise((resolve) => {
+      const { handler, ...restOptions } = options;
+      
       const rzp = new window.Razorpay({
         key: this.keyId,
-        ...options,
-      } as RazorpaySubscriptionOptions);
+        ...restOptions,
+        handler: (response: RazorpaySubscriptionResponse) => {
+          // Call original handler if provided
+          if (handler) {
+            handler(response);
+          }
+          resolve(response);
+        },
+        modal: {
+          ondismiss: () => {
+            // User closed the modal without completing payment
+            resolve(null);
+          },
+          escape: true,
+          backdropclose: false,
+        },
+      } as RazorpaySubscriptionOptions & { modal: { ondismiss: () => void; escape: boolean; backdropclose: boolean } });
 
       rzp.open();
     });

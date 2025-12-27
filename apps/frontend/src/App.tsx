@@ -1,8 +1,9 @@
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { razorpayService } from "@/lib/razorpay";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import React, { useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
@@ -10,6 +11,9 @@ import ProgramDetail from "./pages/ProgramDetail";
 import Volunteer from "./pages/Volunteer";
 
 const queryClient = new QueryClient();
+
+// Preload Razorpay SDK for faster payment initialization
+razorpayService.preloadScript();
 
 const Layout: React.FC = () => {
   const location = useLocation();

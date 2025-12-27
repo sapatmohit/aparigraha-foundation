@@ -91,7 +91,7 @@ const DonationModal = ({
         const response = await razorpayService.initializeSubscription({
           subscription_id: subscriptionId,
           name: "Aparigraha Foundation",
-          description: description || (recurring ? `Monthly Donation for ${programTitle || "Aparigraha Foundation"}` : `Donation for ${programTitle || "Aparigraha Foundation"}`),
+          description: description || `Monthly Donation for ${programTitle || "Aparigraha Foundation"}`,
           image: "/logo.png",
           prefill: {
             name: donorInfo.name,
@@ -108,21 +108,25 @@ const DonationModal = ({
           theme: {
             color: "#8B5CF6"
           },
-          handler: (response) => {
-            console.log("Subscription successful:", response);
-            toast({
-              title: "Subscription Successful!",
-              description: `Thank you for setting up a monthly donation of ₹${amount} for ${programTitle || "Aparigraha Foundation"}.`,
-            });
-            
-            if (onSuccess) onSuccess();
-            onClose();
+          handler: () => {
+            // Handler is called by razorpayService, but success is handled via Promise resolution
           }
         });
 
-        if (!response) {
-          throw new Error("Failed to initialize subscription");
+        // null means user closed the popup without completing
+        if (response === null) {
+          // User cancelled - no error toast needed
+          return;
         }
+
+        // Payment successful
+        toast({
+          title: "Subscription Successful!",
+          description: `Thank you for setting up a monthly donation of ₹${amount} for ${programTitle || "Aparigraha Foundation"}.`,
+        });
+        
+        if (onSuccess) onSuccess();
+        onClose();
       } else {
         // Load Razorpay script and initialize one-time payment
         const response = await razorpayService.initializePayment({
@@ -146,21 +150,25 @@ const DonationModal = ({
           theme: {
             color: "#8B5CF6"
           },
-          handler: (response) => {
-            console.log("Payment successful:", response);
-            toast({
-              title: "Donation Successful!",
-              description: `Thank you for your generous donation of ₹${amount} for ${programTitle || "Aparigraha Foundation"}.`,
-            });
-            
-            if (onSuccess) onSuccess();
-            onClose();
+          handler: () => {
+            // Handler is called by razorpayService, but success is handled via Promise resolution
           }
         });
 
-        if (!response) {
-          throw new Error("Failed to initialize payment");
+        // null means user closed the popup without completing
+        if (response === null) {
+          // User cancelled - no error toast needed
+          return;
         }
+
+        // Payment successful
+        toast({
+          title: "Donation Successful!",
+          description: `Thank you for your generous donation of ₹${amount} for ${programTitle || "Aparigraha Foundation"}.`,
+        });
+        
+        if (onSuccess) onSuccess();
+        onClose();
       }
       
     } catch (error) {
