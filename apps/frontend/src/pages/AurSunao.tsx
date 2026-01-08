@@ -24,17 +24,11 @@ const AurSunao: React.FC = () => {
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
                 <div className="impact-card text-center bg-white/10 backdrop-blur-sm">
-                    <p className="counter text-secondary flex justify-center items-center">25 K+</p>
+                    <p className="counter text-secondary flex justify-center items-center">1K+</p>
                     <p className="text-white/80">Beneficiaries</p>
                 </div>
-                <div className="impact-card text-center bg-white/10 backdrop-blur-sm">
-                  <p className="counter text-secondary">150</p>
-                  <p className="text-white/80">Schools</p>
-                </div>
-                <div className="impact-card text-center bg-white/10 backdrop-blur-sm">
-                  <p className="counter text-secondary flex justify-center items-center">5,000+</p>
-                  <p className="text-white/80">Graduates</p>
-                </div>
+               
+               
               </div>
               <div>
                 <h2 className="text-2xl font-bold mb-2 text-white">Key Objectives</h2>

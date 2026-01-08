@@ -52,7 +52,7 @@ const HeroSection = () => {
           {/* Impact Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 fade-in-up stagger-3 bg-[#331452]/60 rounded-md py-4">
             <div className="text-center">
-              <div className="counter text-secondary mb-2 text-[#f1b1dc]">300 K+</div>
+              <div className="counter text-secondary mb-2 text-[#f1b1dc]">100 K+</div>
               <p className="text-white/80 text-sm uppercase tracking-wide">Lives transformed</p>
             </div>
             <div className="text-center">
@@ -60,7 +60,7 @@ const HeroSection = () => {
               <p className="text-white/80 text-sm uppercase tracking-wide">Students educated</p>
             </div>
             <div className="text-center">
-              <div className="counter text-secondary mb-2 text-[#f1b1dc]">7.5 K+</div>
+              <div className="counter text-secondary mb-2 text-[#f1b1dc]">2.5 K+</div>
               <p className="text-white/80 text-sm uppercase tracking-wide">Healthcare</p>
             </div>
             <div className="text-center">
