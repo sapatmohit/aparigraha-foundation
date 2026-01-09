@@ -59,6 +59,12 @@ const AboutSection = () => {
       role: "Secretary",
       image: "/images/team/geeta.jpg",
       bio: "A purpose-driven woman entrepreneur, she blends business leadership with a deep commitment to social impact. Passionate about designing and executing high-pressure project timelines, she brings precision, creativity, and resilience to every initiative she leads. Beyond her entrepreneurial work, she champions philanthropic causes—supporting education, women’s empowerment, and community development—ensuring that every project she undertakes contributes to meaningful and sustainable change."
+    },
+    {
+      name: "Ms. Rishika Jain",
+      role: "CEO",
+      image: "/images/team/rishika.jpg",
+      bio: "An inquisitive and driven social empath of International Relations and Law with an interest in diplomacy, human rights and a passion for sustainability."
     }
   ];
 
