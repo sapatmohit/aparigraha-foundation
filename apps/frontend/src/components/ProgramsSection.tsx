@@ -1,6 +1,6 @@
 // Images from public folder for deployment
 const educationImage = "/images/programs/aursunao.png";
-const mealtohealImage = "/images/programs/mealtoheal.jpg";
+const mealtohealImage = "/images/programs/mealtoheal.png";
 const gowiththeflowImage = "/images/programs/gowiththeflow.png";
 const rootforo2Image = "/images/programs/rootforO2.jpg";
 const storyoffrontlineImage = "/images/programs/storyoffrontlinewarriors.png";
@@ -26,6 +26,25 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
+// Import SDG images
+import sdg15 from '@/assets/SDG-15.png';
+import sdg17 from '@/assets/SDG-17.png';
+import sdg2 from '@/assets/SDG-2.png';
+import sdg3 from '@/assets/SDG-3.png';
+import sdg4 from '@/assets/SDG-4.png';
+import sdg6 from '@/assets/SDG-6.png';
+import sdg8 from '@/assets/SDG-8.png';
+
+const sdgMap: Record<number, string> = {
+  2: sdg2,
+  3: sdg3,
+  4: sdg4,
+  6: sdg6,
+  8: sdg8,
+  15: sdg15,
+  17: sdg17,
+};
+
 // Define the program type
 interface Program {
   id: string;
@@ -33,6 +52,7 @@ interface Program {
   description: string;
   image: string;
   icon: React.ElementType;
+  sdgIds: number[];
   stats: {
     beneficiaries?: string;
     [key: string]: string | undefined;
@@ -60,74 +80,31 @@ interface Program {
 const ProgramsSection = () => {
   const programs: Program[] = [
     {
-      id: "aursunao",
-      title: "AurSunao",
-      description: "An open platform to reach experts for good health and well being. Free counselling support platform offering confidential counselling helplines for those in emotional distress; trained listeners and mental-health professionals available. Also supports education initiatives and resources.",
-      image: educationImage,
-      icon: BookOpen,
-      stats: {
-        beneficiaries: "25 K+",
-        schools: "150",
-        graduates: "5,000+"
-      },
-      objectives: [
-        "Build and renovate schools in rural areas",
-        "Train local teachers and educators",
-        "Provide scholarships for promising students",
-        "Develop digital learning programs"
-      ],
-      testimonial: {
-        quote: "Thanks to the scholarship program, I was able to complete my nursing degree and now serve my community as a healthcare worker.",
-        author: "Maria Santos, Scholarship Recipient"
-      },
-      impact: {
-        title: "Transforming Education",
-        description: "Our education program has built 150 schools and trained over 2,000 teachers, reaching more than 25 K+ students across rural communities. We've awarded 5,000+ scholarships to deserving students, with 85% going on to higher education.",
-        image: educationImage
-      },
-      getInvolved: {
-        title: "Ways to Get Involved",
-        steps: [
-          {
-            step: "1",
-            title: "Donate",
-            description: "Support our education initiatives with a financial contribution to help us expand our reach."
-          },
-          {
-            step: "2",
-            title: "Volunteer",
-            description: "Join our team of volunteers and make a direct impact in communities through teaching and mentoring."
-          },
-          {
-            step: "3",
-            title: "Partner",
-            description: "Collaborate with us to amplify our impact through strategic partnerships and resource sharing."
-          }
-        ]
-      }
-    },
-    {
       id: "mealtoheal",
       title: "Meal To Heal",
-      description: "Weekly Food Drive carried out at various cities across India for the needy. Meals distributed at various shelter homes and care clinics for sick and elderly. Volunteers prepare age-appropriate nutritive meals per medical requirements.",
+      description: "Weekly Food Drive carried out at various cities across India for the needy. Meals distributed at various shelter homes and care clinics for sick and elderly.",
       image: mealtohealImage,
-      icon: ArrowRight,
+      icon: Heart,
+      sdgIds: [2],
       stats: {
-        meals: "150,000+"
+        meals: "150,000+",
+        cities: "Multiple",
+        volunteers: "Active"
       },
       objectives: [
         "Mobilize volunteers for food preparation and distribution",
         "Coordinate with shelter homes and care clinics for targeted delivery",
-        "Ensure dietary needs are met for elderly and sick beneficiaries"
+        "Ensure dietary needs are met for elderly and sick beneficiaries",
+        "Provide nutritious meals per medical requirements"
       ],
       testimonial: {
-        quote: "Our volunteers make and distribute nutritious meals to those who need them most.",
-        author: "Volunteer Coordinator"
+        quote: "Our volunteers use their cooking skills to make age appropriate nutritive value meals as per the medical requirements.",
+        author: "Volunteer"
       },
       impact: {
-        title: "Feeding Hope",
-        description: "Over 150,000 meals distributed across Indian states.",
-        image: mealtohealImage,
+        title: "Zero Hunger",
+        description: "Over 150,000 meals distributed across Indian states. We ensure that no one goes to sleep hungry in the communities we serve.",
+        image: mealtohealImage
       },
       getInvolved: {
         title: "Ways to Get Involved",
@@ -139,194 +116,218 @@ const ProgramsSection = () => {
       }
     },
     {
-      id: "gowiththeflow",
-      title: "Go With The Flow",
-      description: "Sanitary Pad Drive Donation and menstrual hygiene education. Objective to provide sanitary pad kits and education PAN India; note distribution to remand homes.",
-      image: gowiththeflowImage,
-      icon: Target,
+      id: "aursunao",
+      title: "AurSunao",
+      description: "An Open Platform to reach experts for Good Health and Well Being. Free confidential counselling helplines for those in emotional distress.",
+      image: educationImage,
+      icon: Heart,
+      sdgIds: [3],
       stats: {
-        beneficiaries: "—"
+        beneficiaries: "1 K+",
+        support: "24/7",
+        professionals: "Trained"
       },
       objectives: [
-        "Provide sanitary pad kits and hygiene education across India",
-        "Partner with schools, NGOs, and remand homes for distribution",
-        "Train volunteers to deliver menstrual health workshops"
+        "Provide free, confidential counselling helplines",
+        "Connect trained listeners and mental-health professionals",
+        "Empower hope and deliver comfort to those in distress",
+        "Ensure a judgment-free space for emotional well-being"
       ],
       testimonial: {
-        quote: "Menstrual hygiene drives improve dignity and health outcomes for young women.",
-        author: "Program Lead"
+        quote: "In moments of depression, despair, or emotional overwhelm, no one should feel alone. We are here to help.",
+        author: "AurSunao Team"
       },
       impact: {
-        title: "Sanitary Access",
-        description: "Distribution of sanitary kits and menstrual hygiene education across remand homes and communities.",
-        image: gowiththeflowImage,
+        title: "Good Health and Well Being",
+        description: "We ensure that every individual—regardless of background or circumstance—has access to a compassionate support system. We are here to empower hope.",
+        image: educationImage
       },
       getInvolved: {
         title: "Ways to Get Involved",
         steps: [
-          { step: "1", title: "Donate", description: "Support sanitary pad kit procurement and distribution." },
-          { step: "2", title: "Volunteer", description: "Help run hygiene education sessions." },
-          { step: "3", title: "Partner", description: "Work with us to scale education and distribution." }
-        ]
-      }
-    },
-    {
-      id: "rootforo2",
-      title: "Root For O2",
-      description: "Plantation drives across states, especially post-disasters.",
-      image: rootforo2Image,
-      icon: Home,
-      stats: {
-        saplings: "100,000+"
-      },
-      objectives: [
-        "Organize large-scale plantation events across districts",
-        "Engage local communities and volunteers for maintenance",
-        "Focus on disaster-affected areas for reforestation"
-      ],
-      testimonial: {
-        quote: "Plantation drives help restore ecological balance and community resilience.",
-        author: "Environmental Coordinator"
-      },
-      impact: {
-        title: "Greening Our Future",
-        description: "Planted over 100,000 saplings.",
-        image: rootforo2Image
-      },
-      getInvolved: {
-        title: "Ways to Get Involved",
-        steps: [
-          { step: "1", title: "Donate", description: "Support sapling procurement and on-ground logistics." },
-          { step: "2", title: "Volunteer", description: "Join local plantation drives and support maintenance." },
-          { step: "3", title: "Partner", description: "Collaborate on large-scale restoration projects." }
-        ]
-      }
-    },
-    {
-      id: "storyoffrontline",
-      title: "Story of FrontLine Warriors",
-      description: "FB Live with frontline warriors; Frontline Warriors During COVID-19",
-      image: storyoffrontlineImage,
-      icon: Users,
-      stats: {
-        sessions: "—"
-      },
-      objectives: [
-        "Host live sessions with frontline workers",
-        "Showcase frontline stories and resilience",
-        "Encourage community dialogue and support"
-      ],
-      testimonial: {
-        quote: "Highlighting the efforts of frontline workers during crises.",
-        author: "Program Coordinator"
-      },
-      impact: {
-        title: "Frontline Stories",
-        description: "Frontline Warriors During COVID-19",
-        image: storyoffrontlineImage
-      },
-      getInvolved: {
-        title: "Ways to Get Involved",
-        steps: [
-          { step: "1", title: "Attend", description: "Join live sessions and share insights." },
-          { step: "2", title: "Share", description: "Spread frontline stories across your network." },
-          { step: "3", title: "Support", description: "Support frontline initiatives through donations and advocacy." }
+          { step: "1", title: "Volunteer", description: "Join as a trained listener or mental health professional." },
+          { step: "2", title: "Spread Awareness", description: "Share our helpline numbers with those in need." },
+          { step: "3", title: "Donate", description: "Support the infrastructure that keeps our lines open." }
         ]
       }
     },
     {
       id: "indradhanush",
       title: "Indradhanush",
-      description: "Empowering communities through infrastructure and economic development projects.",
+      description: "Monthly Creative Expression for ages 3 years + to 18 years +. An initiative to promote Quality Education through art and creativity.",
       image: communityImage,
-      icon: Home,
+      icon: BookOpen,
+      sdgIds: [4],
       stats: {
-        beneficiaries: "100,000+",
-        projects: "300",
-        jobs: "2 K+"
+        entries: "12,000+",
+        states: "PAN India",
+        events: "Monthly"
       },
       objectives: [
-        "Develop clean water and sanitation systems",
-        "Support small business and microfinance",
-        "Build sustainable infrastructure",
-        "Promote environmental conservation"
+        "Organize art, essay, and creative competitions",
+        "Encourage creative expression among students",
+        "Provide a platform for showcasing talent",
+        "Ensure inclusive participation across all age groups"
       ],
       testimonial: {
-        quote: "The clean water project transformed our village. Children no longer get sick from contaminated water, and women can focus on other activities.",
-        author: "James Mukasa, Community Leader"
+        quote: "Quality education is not just a right; it is the foundation for empowerment, innovation, and sustainable development.",
+        author: "Program Lead"
       },
       impact: {
-        title: "Building Sustainable Communities",
-        description: "Our community development program has completed over 300 projects, creating 2 K+ jobs and benefiting more than 100,000 people. We've built clean water systems, improved sanitation, and supported local businesses through microfinance initiatives. Till date 12,000+ entries from across Indian states (Indradhanush creative entries).",
+        title: "Quality Education",
+        description: "Till date 12,000+ entries and creative work submitted from across Indian states. We aim to eliminate disparities in access to creative learning opportunities.",
         image: communityImage
+      },
+      getInvolved: {
+        title: "Participate in 4 Steps",
+        steps: [
+          { step: "1", title: "Choose Category", description: "Select the category fitting your age group." },
+          { step: "2", title: "Create", description: "Keep your final artwork or essay ready." },
+          { step: "3", title: "Register", description: "Upload artwork and submit entry fee." }
+        ]
+      }
+    },
+    {
+      id: "gowiththeflow",
+      title: "Go With The Flow",
+      description: "Sanitary Pad Drive Donation and menstrual hygiene education. Creating a period of change across India.",
+      image: gowiththeflowImage,
+      icon: Users,
+      sdgIds: [6],
+      stats: {
+        kits: "Distributed",
+        coverage: "PAN India",
+        awareness: "High"
+      },
+      objectives: [
+        "Provide sanitary pad kits to remand homes and underprivileged areas",
+        "Educate women and girls about menstrual health and hygiene",
+        "Break the stigma and secrecy around menstruation",
+        "Ensure access to basic sanitary necessities"
+      ],
+      testimonial: {
+        quote: "Sanitary hygiene is not a privilege but a basic necessity. We help women manage their periods with dignity.",
+        author: "Go With The Flow Team"
+      },
+      impact: {
+        title: "Clean Water and Sanitation",
+        description: "Distribution of sanitary pads and hygiene education to help women and girls in underprivileged communities manage their periods safely.",
+        image: gowiththeflowImage,
       },
       getInvolved: {
         title: "Ways to Get Involved",
         steps: [
-          {
-            step: "1",
-            title: "Donate",
-            description: "Support our community development projects with a financial contribution."
-          },
-          {
-            step: "2",
-            title: "Volunteer",
-            description: "Join our team of volunteers and make a direct impact in communities through construction and development work."
-          },
-          {
-            step: "3",
-            title: "Partner",
-            description: "Collaborate with us to amplify our impact through strategic partnerships and resource sharing."
-          }
+          { step: "1", title: "Donate", description: "Support sanitary pad kit procurement." },
+          { step: "2", title: "Volunteer", description: "Help distribute kits and run awareness drives." },
+          { step: "3", title: "Advocate", description: "Help break the stigma by talking about menstrual health." }
         ]
       }
     },
     {
       id: "pragya",
       title: "Pragya",
-      description: "Improving healthcare accessibility and quality in remote and underserved areas.",
+      description: "Skill Building Programs for Students and Teachers. Promoting Decent Work and Economic Growth.",
       image: pragyaImage,
-      icon: Heart,
+      icon: Target,
+      sdgIds: [8],
       stats: {
-        beneficiaries: "7.5 K+",
-        clinics: "50",
-        professionals: "200"
+        teachers: "Trained",
+        students: "Skilled",
+        partners: "Multiple"
       },
       objectives: [
-        "Establish mobile health clinics",
-        "Train community health workers",
-        "Provide essential medicines and equipment",
-        "Implement preventive health programs",
-        "Teacher & student skill-building: Canvas, Google for Education, Google Level 1/2",
-        "Classroom pedagogy: Values, NEP 2020, AI in the classroom, career guidance"
+        "Train teachers in Canvas, Google for Education, and AI in classrooms",
+        "Student workshops on Value Systems and Career Decisions",
+        "Career guidance for Armed Forces and other sectors",
+        "Implement NEP 2020 aligned training modules"
       ],
       testimonial: {
-        quote: "The mobile clinic brings hope to our remote area. My daughter received life-saving treatment that wasn't available before.",
-        author: "Grace Achieng, Mother of Patient"
+        quote: "Empowering the next generation with the right skills and values for a sustainable economic future.",
+        author: "Pragya Coordinator"
       },
       impact: {
-        title: "Bringing Healthcare to Remote Areas",
-        description: "Our healthcare program has established 50 mobile clinics, trained 200 healthcare professionals, and provided medical care to over 7.5 K+ people in remote areas. We've implemented preventive health programs that have reduced disease incidence by 40% in our service areas.",
+        title: "Decent Work and Economic Growth",
+        description: "Comprehensive training programs covering digital tools, values, and career guidance to foster economic growth and employment.",
         image: pragyaImage
       },
       getInvolved: {
         title: "Ways to Get Involved",
         steps: [
-          {
-            step: "1",
-            title: "Donate",
-            description: "Support our healthcare initiatives with a financial contribution to help us expand our reach."
-          },
-          {
-            step: "2",
-            title: "Volunteer",
-            description: "Join our team of volunteers and make a direct impact in communities through healthcare services."
-          },
-          {
-            step: "3",
-            title: "Partner",
-            description: "Collaborate with us to amplify our impact through strategic partnerships and resource sharing."
-          }
+          { step: "1", title: "Mentor", description: "Share your professional expertise with students." },
+          { step: "2", title: "Partner", description: "Schools and institutions can partner for training." },
+          { step: "3", title: "Sponsor", description: "Support skill-building workshops." }
+        ]
+      }
+    },
+    {
+      id: "rootforo2",
+      title: "Root For O2",
+      description: "Planting new roots for a Greener Planet. Life on Land initiatives across states.",
+      image: rootforo2Image,
+      icon: Home,
+      sdgIds: [15],
+      stats: {
+        saplings: "100,000+",
+        drives: "Ongoing",
+        impact: "High"
+      },
+      objectives: [
+        "Organize plantation drives in disaster-affected areas",
+        "Combat desertification and halt biodiversity loss",
+        "Promote sustainable use of terrestrial ecosystems",
+        "Engage communities in reforestation"
+      ],
+      testimonial: {
+        quote: "By safeguarding life on land, we secure the well-being of all species and ensure a healthier planet.",
+        author: "Root For O2 Team"
+      },
+      impact: {
+        title: "Life on Land",
+        description: "Planted over 100,000 saplings. Focusing on protecting, restoring, and promoting sustainable use of our land resources.",
+        image: rootforo2Image
+      },
+      getInvolved: {
+        title: "Ways to Get Involved",
+        steps: [
+          { step: "1", title: "Plant", description: "Join our plantation drives." },
+          { step: "2", title: "Donate", description: "Sponsor saplings for a greener future." },
+          { step: "3", title: "Adopt", description: "Commit to maintaining planted saplings." }
+        ]
+      }
+    },
+    {
+      id: "storyoffrontline",
+      title: "Story of FrontLine Warriors",
+      description: "FB Live with the Front Line Warriors. Partnerships for the Goals to honor those who serve.",
+      image: storyoffrontlineImage,
+      icon: Users,
+      sdgIds: [17],
+      stats: {
+        sessions: "Live",
+        heroes: "Honored",
+        reach: "Global"
+      },
+      objectives: [
+        "Host live sessions with frontline workers",
+        "Showcase stories of resilience and courage",
+        "Pay gratitude to forces and medical fraternity",
+        "Strengthen global partnership for goals"
+      ],
+      testimonial: {
+        quote: "Their courage, dedication, and unwavering commitment brought hope when the world stood still.",
+        author: "Appreciation Note"
+      },
+      impact: {
+        title: "Partnerships for the Goals",
+        description: "Highighting the efforts of frontline warriors during COVID-19 and beyond, fostering a spirit of unity and gratitude.",
+        image: storyoffrontlineImage
+      },
+      getInvolved: {
+        title: "Ways to Get Involved",
+        steps: [
+          { step: "1", title: "Watch", description: "Tune in to our live sessions." },
+          { step: "2", title: "Share", description: "Amplify the stories of our heroes." },
+          { step: "3", title: "Nominate", description: "Suggest a frontline warrior to be featured." }
         ]
       }
     }
@@ -351,41 +352,14 @@ const ProgramsSection = () => {
   ];
 
   return (
-    <section id="programs" className="section-padding">
+    <section id="programs" className="py-24 bg-gradient-to-b from-white to-gray-50 dark:from-background dark:to-muted/30">
       <div className="container-custom">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <Badge variant="secondary" className="mb-4 text-sm font-medium">
-            Our Work
-          </Badge>
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6 gradient-text">
-            Core Programs & Initiatives
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Through our comprehensive programs, we address the root causes of poverty
-            and inequality while building sustainable pathways to prosperity.
+        <div className="text-center max-w-3xl mx-auto mb-20 fade-in-up">
+          <Badge className="mb-4">Our Programs</Badge>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">Creating Lasting Change</h2>
+          <p className="text-xl text-muted-foreground">
+            We focus on holistic development through targeted initiatives in education, healthcare, and community empowerment.
           </p>
-
-          {/* Program Dropdown */}
-          <div className="mt-8">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="bg-background">
-                  Jump to a Program
-                  <ChevronDown className="ml-2 h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="center">
-                {programs.map((program) => (
-                  <DropdownMenuItem key={program.id} asChild>
-                    <Link to={`/program/${program.id}`} className="w-full">
-                      {program.title}
-                    </Link>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
         </div>
 
         {/* Process Flow */}
@@ -415,12 +389,23 @@ const ProgramsSection = () => {
             <div key={program.id} className={`grid lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''
               }`}>
               {/* Image */}
-              <div className={`${index % 2 === 1 ? 'lg:col-start-2' : ''} fade-in-up`}>
-                <img
-                  src={program.image}
-                  alt={program.title}
-                  className="w-full h-80 object-cover rounded-2xl shadow-medium"
-                />
+              <div className={`relative group ${index % 2 === 1 ? 'lg:col-start-2' : ''} fade-in-up stagger-2`}>
+                <div className="absolute inset-0 bg-secondary/10 rounded-2xl transform rotate-3 group-hover:rotate-2 transition-transform duration-300" />
+                <div className="relative rounded-2xl shadow-xl overflow-hidden h-[400px]">
+                  <img
+                    src={program.image}
+                    alt={program.title}
+                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                  />
+                  {/* SDG Badge Overlay */}
+                  <div className="absolute top-4 right-4 flex gap-2 flex-wrap justify-end">
+                    {program.sdgIds.map((sdgId) => (
+                      <div key={sdgId} className="w-20 h-20 shadow-lg rounded-lg overflow-hidden hover:scale-105 transition-transform duration-300" title={`SDG ${sdgId}`}>
+                        <img src={sdgMap[sdgId]} alt={`SDG ${sdgId}`} className="w-full h-full object-contain" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
 
               {/* Content */}
@@ -429,7 +414,16 @@ const ProgramsSection = () => {
                   <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
                     <program.icon className="h-6 w-6 text-primary" />
                   </div>
-                  <h3 className="text-3xl font-bold">{program.title}</h3>
+                  <div>
+                    <div className="flex flex-wrap gap-2 mb-2">
+                      {program.sdgIds.map((sdgId) => (
+                        <Badge key={sdgId} variant="outline" className="text-[10px] px-2 py-0 h-5 border-secondary text-secondary">
+                          SDG {sdgId}
+                        </Badge>
+                      ))}
+                    </div>
+                    <h3 className="text-3xl font-bold">{program.title}</h3>
+                  </div>
                 </div>
 
                 <p className="text-lg text-muted-foreground mb-6">{program.description}</p>

@@ -187,27 +187,22 @@ const Footer = () => {
               <div className="flex items-start space-x-3">
                 <Phone className="h-5 w-5 text-secondary mt-0.5" />
                 <div className="text-sm">
-                  <p>Contact us - +91 91363 56135</p>
+                  <p>Contact us - 9136356135 / 9152016555</p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-secondary" />
-                <span className="text-sm">Email - help@aparigrahafoundation.com</span>
+                <span className="text-sm">Email - info@aparigrahafoundation.org</span>
               </div>
               <div className="flex items-start space-x-3">
                 <MapPin className="h-5 w-5 text-secondary mt-0.5" />
-                <a
-                  href="https://www.google.com/maps/search/?api=1&query=33+Ground+Floor+Citi+Mall+Oshiwara+Link+Road+Andheri+West+Mumbai+400053"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm hover:underline"
-                >
-                  33, Ground Floor, Citi Mall, Oshiwara Link Road, Andheri (W), Mumbai - 400053
-                </a>
+                <span className="text-sm">
+                   Visit us - to be added later
+                </span>
               </div>
               <div className="flex items-center space-x-3">
                 <Calendar className="h-5 w-5 text-secondary" />
-                <span className="text-sm">Office hours - Monday to Sunday 10:00 am to 8:00 pm</span>
+                <span className="text-sm">Office hours - MONDAY to Sunday 10:00 am to 8:00 pm</span>
               </div>
             </div>
 

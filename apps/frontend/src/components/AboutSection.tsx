@@ -52,20 +52,13 @@ const AboutSection = () => {
       name: "Dr. Amita Jain",
       role: "President",
       image: "/images/team/amita.jpg",
-      bio: "Transformational education leader with 30+ years in governance, academic operations and international partnerships. Focused on inclusive student recruitment and community-driven educational programs."
+      bio: "Transformational Education Leader transitioning into Institutional Admission Strategy and Enrollment Management, bringing 30+ years of experience in governance, academic operations, and international partnerships. Demonstrated expertise in policy design, data-driven student recruitment, candidate evaluation, and stakeholder engagement. Adept at leveraging technology, analytics, and cross-cultural collaboration to enhance institutional growth and student diversity. Deeply committed to philanthropic educational initiatives, including expanding access for underrepresented learners, championing equity-driven admission practices, and supporting community-based programs that uplift marginalized student groups."
     },
     {
       name: "Ms. Geeta Jain",
       role: "Secretary",
       image: "/images/team/geeta.jpg",
-      bio: "Entrepreneur and social-impact leader experienced in project delivery, women’s empowerment and community development."
-    },
-
-      {
-      name: "Ms. Rishika Jain",
-      role: "CEO",
-      image: "/images/team/rishika.jpg",
-      bio: "An inquisitive and driven social empath of International Relations and Law with an interest in diplomacy, human rights and a passion for sustainability"
+      bio: "A purpose-driven woman entrepreneur, she blends business leadership with a deep commitment to social impact. Passionate about designing and executing high-pressure project timelines, she brings precision, creativity, and resilience to every initiative she leads. Beyond her entrepreneurial work, she champions philanthropic causes—supporting education, women’s empowerment, and community development—ensuring that every project she undertakes contributes to meaningful and sustainable change."
     }
   ];
 
@@ -101,13 +94,17 @@ const AboutSection = () => {
         {/* Core Values */}
         <div className="mb-20">
           <h3 className="text-3xl font-bold text-center mb-12">Our Commitment to the SDGs</h3>
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-9 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-9 gap-4">
             {sdgGoals.map((sdg, index) => (
-              <Card key={sdg.id} className={`bg-white shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-lg fade-in-up stagger-${index + 1}`}>
-                <CardContent className="p-4 text-center">
-                  <img src={sdgImages[sdg.id - 1]} alt={sdg.title} className="w-24 h-24 mx-auto mb-3" />
-                  <h4 className="text-md font-semibold mb-2">{sdg.title}</h4>
-                </CardContent>
+              <Card key={sdg.id} className={`bg-white border-0 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl rounded-xl overflow-hidden h-full group fade-in-up stagger-${(index % 9) + 1}`}>
+                <div className="p-2">
+                   <div className="rounded-lg overflow-hidden aspect-square w-full shadow-inner">
+                    <img src={sdgImages[sdg.id - 1]} alt={sdg.title} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" />
+                   </div>
+                </div>
+                <div className="px-2 pb-3 pt-1 text-center">
+                  <h4 className="text-sm font-serif font-medium text-foreground/80 leading-tight">{sdg.title}</h4>
+                </div>
               </Card>
             ))}
           </div>
