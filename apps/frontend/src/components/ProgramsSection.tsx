@@ -5,19 +5,12 @@ const gowiththeflowImage = "/images/programs/gowiththeflow.png";
 const rootforo2Image = "/images/programs/rootforO2.jpg";
 const storyoffrontlineImage = "/images/programs/storyoffrontlinewarriors.png";
 const communityImage = "/images/programs/indradhanush.png";
-const pragyaImage = "/images/programs/pragya.jpg";
+const pragyaImage = "/images/programs/pragya.png";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
   ArrowRight,
   BookOpen,
-  ChevronDown,
   Heart,
   Home,
   Target,
