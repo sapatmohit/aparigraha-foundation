@@ -1,11 +1,11 @@
 // Images from public folder for deployment
 const educationImage = "/images/programs/aursunao.png";
-const mealtohealImage = "/images/programs/mealtoheal.jpg";
-const gowiththeflowImage = "/images/programs/gowiththeflow.png";
+const mealtohealImage = "/images/programs/mealtoheal.png";
+const gowiththeflowImage = "/images/programs/gowiththeflow.jpg";
 const rootforo2Image = "/images/programs/rootforO2.jpg";
 const storyoffrontlineImage = "/images/programs/storyoffrontlinewarriors.png";
 const communityImage = "/images/programs/indradhanush.png";
-const pragyaImage = "/images/programs/pragya.jpg";
+const pragyaImage = "/images/programs/pragya.png";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
