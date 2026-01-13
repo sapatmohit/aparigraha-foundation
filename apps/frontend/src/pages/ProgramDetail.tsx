@@ -3,7 +3,7 @@ const educationImage = "/images/programs/aursunao.png";
 const communityImage = "/images/programs/indradhanush.png";
 const pragyaImage = "/images/programs/pragya.png";
 const mealtohealImage = "/images/programs/mealtoheal.png";
-const gowiththeflowImage = "/images/programs/gowiththeflow.jpg";
+const gowiththeflowImage = "/images/programs/gowiththeflow.png";
 const rootforo2Image = "/images/programs/rootforO2.jpg";
 const storyoffrontlineImage = "/images/programs/storyoffrontlinewarriors.png";
 // Import SDG images
@@ -617,5 +617,6 @@ const ProgramDetail = () => {
     </div>
   );
 };
+
 
 export default ProgramDetail;
