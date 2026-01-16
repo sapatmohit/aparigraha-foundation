@@ -14,7 +14,7 @@ const Pragya: React.FC = () => {
             <div>
               <img
                 className="rounded-2xl shadow-strong w-full h-full object-cover"
-                src="https://via.placeholder.com/800x600"
+                src="/images/programs/Pragya.jpg"
                 alt="Pragya Program"
               />
             </div>
