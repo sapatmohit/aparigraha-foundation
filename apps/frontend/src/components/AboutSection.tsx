@@ -25,7 +25,59 @@ const sdgImages = [
   sdg11, sdg12, sdg13, sdg14, sdg15, sdg16, sdg17
 ];
 
+import { useState } from "react";
+import { ChevronDown, ChevronUp } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
+const TeamMemberCard = ({ member, index }: { member: any, index: number }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const maxLength = 150;
+  const showReadMore = member.bio.length > maxLength;
+
+  return (
+    <Card className={`bg-card text-center overflow-hidden border-0 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 w-full max-w-sm flex flex-col fade-in-up stagger-${index + 1}`}>
+      <div className="h-2 bg-gradient-to-r from-secondary to-primary w-full"></div>
+      <CardContent className="p-8 flex-1 flex flex-col items-center">
+        <div className="mb-6 relative">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary rounded-full blur opacity-20 transform scale-110"></div>
+          <img
+            src={member.image}
+            alt={member.name}
+            className="w-32 h-32 rounded-full relative z-10 object-cover border-4 border-white shadow-md ring-2 ring-primary/10"
+          />
+        </div>
+        
+        <h4 className="text-2xl font-bold mb-1 text-foreground font-serif">{member.name}</h4>
+        <Badge variant="secondary" className="mb-4 px-3 py-1 text-xs uppercase tracking-wider font-semibold">
+          {member.role}
+        </Badge>
+        
+        <div className="text-left w-full relative">
+          <span className="absolute -top-4 -left-2 text-6xl text-primary/10 font-serif leading-none">“</span>
+          <div className="relative z-10">
+            <p className="text-muted-foreground leading-relaxed text-[0.95rem] mb-2">
+              {isExpanded ? member.bio : `${member.bio.slice(0, maxLength)}${showReadMore ? '...' : ''}`}
+            </p>
+            {showReadMore && (
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="p-0 h-auto font-medium text-primary hover:text-primary/80 hover:bg-transparent flex items-center gap-1 mx-auto mt-2"
+              >
+                {isExpanded ? (
+                  <>Show Less <ChevronUp className="h-3 w-3" /></>
+                ) : (
+                  <>Read More <ChevronDown className="h-3 w-3" /></>
+                )}
+              </Button>
+            )}
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
 const AboutSection = () => {
   const sdgGoals = [
     { id: 1, title: "No Poverty", description: "End poverty in all its forms everywhere." },
@@ -121,18 +173,7 @@ const AboutSection = () => {
           <h3 className="text-3xl font-bold text-center mb-12">Our Leadership Team</h3>
           <div className="grid md:grid-cols-3 gap-8 justify-items-center">
             {team.map((member, index) => (
-              <Card key={member.name} className={`impact-card text-center fade-in-up stagger-${index + 1}`}>
-                <CardContent className="p-6">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
-                  />
-                  <h4 className="text-xl font-semibold mb-2">{member.name}</h4>
-                  <p className="text-secondary font-medium mb-3">{member.role}</p>
-                  <p className="text-muted-foreground text-sm">{member.bio}</p>
-                </CardContent>
-              </Card>
+              <TeamMemberCard key={member.name} member={member} index={index} />
             ))}
           </div>
         </div>

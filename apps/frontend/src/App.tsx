@@ -3,9 +3,10 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { razorpayService } from "@/lib/razorpay";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import React, { useEffect, useLayoutEffect } from "react";
+import React, { useLayoutEffect } from "react";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import Index from "./pages/Index";
+import LegalPage from "./pages/LegalPage";
 import NotFound from "./pages/NotFound";
 import ProgramDetail from "./pages/ProgramDetail";
 import Volunteer from "./pages/Volunteer";
@@ -51,6 +52,15 @@ const Layout: React.FC = () => {
         <Route path="/" element={<Index />} />
         <Route path="/program/:programId" element={<ProgramDetail />} />
         <Route path="/volunteer" element={<Volunteer />} />
+        
+        {/* Legal Routes */}
+        <Route path="/privacy" element={<LegalPage />} />
+        <Route path="/terms" element={<LegalPage />} />
+        <Route path="/accessibility" element={<LegalPage />} />
+        <Route path="/cookies" element={<LegalPage />} />
+        <Route path="/finances" element={<LegalPage />} />
+        <Route path="/safeguarding" element={<LegalPage />} />
+
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<NotFound />} />
       </Routes>

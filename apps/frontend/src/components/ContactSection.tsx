@@ -71,7 +71,7 @@ const ContactSection = () => {
       toast({
         title: "Missing Information",
         description: "Please provide your name, email, and subject to proceed.",
-        variant: "destructive"
+        variant: "warning"
       });
       return;
     }
@@ -80,7 +80,7 @@ const ContactSection = () => {
 
     try {
       // In a real application, you would send this data to your backend
-      console.log("Contact form submitted:", formData);
+      // console.log("Contact form submitted:", formData);
 
       const backendUrl = import.meta.env.VITE_BACKEND_URL || window.location.origin;
       const response = await fetch(`${backendUrl}/api/send-contact`, {
@@ -103,6 +103,7 @@ const ContactSection = () => {
       toast({
         title: "Message Sent!",
         description: "Thank you for contacting us. We'll get back to you soon.",
+        variant: "success"
       });
 
       // Reset form

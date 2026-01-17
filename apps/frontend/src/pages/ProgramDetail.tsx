@@ -1,19 +1,19 @@
 // Images from public folder for deployment
 const educationImage = "/images/programs/aursunao.png";
-const communityImage = "/images/programs/indradhanush.png";
-const pragyaImage = "/images/programs/pragya.png";
+const communityImage = "/images/programs/indradhanush.jpeg";
+const pragyaImage = "/images/programs/Pragya.jpg";
 const mealtohealImage = "/images/programs/mealtoheal.png";
 const gowiththeflowImage = "/images/programs/gowiththeflow.png";
 const rootforo2Image = "/images/programs/rootforO2.jpg";
 const storyoffrontlineImage = "/images/programs/storyoffrontlinewarriors.png";
 // Import SDG images
+import sdg15 from '@/assets/SDG-15.png';
+import sdg17 from '@/assets/SDG-17.png';
 import sdg2 from '@/assets/SDG-2.png';
 import sdg3 from '@/assets/SDG-3.png';
 import sdg4 from '@/assets/SDG-4.png';
 import sdg6 from '@/assets/SDG-6.png';
 import sdg8 from '@/assets/SDG-8.png';
-import sdg15 from '@/assets/SDG-15.png';
-import sdg17 from '@/assets/SDG-17.png';
 
 import ContactForm from "@/components/ContactForm";
 import DonationModal from "@/components/DonationModal";
@@ -22,6 +22,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   ArrowLeft,
+  ArrowRight,
   BookOpen,
   Calendar,
   DollarSign,
@@ -31,8 +32,7 @@ import {
   MapPin,
   Target,
   TrendingUp,
-  Users,
-  ArrowRight
+  Users
 } from "lucide-react";
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -310,6 +310,11 @@ const ProgramDetail = () => {
     }
   };
 
+  // Scroll to top on mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   if (!programId) {
     return <div>Program ID missing</div>;
   }
@@ -319,26 +324,6 @@ const ProgramDetail = () => {
   if (!program) {
     return <div>Program not found</div>;
   }
-
-  // Redirect to 404 if program not found
-  useEffect(() => {
-    // This useEffect is now redundant if the above `if (!program)` handles it.
-    // However, if `programId` is valid but `programs[programId]` is undefined,
-    // the above `if (!program)` will catch it.
-    // The original `useEffect` was for when `program` was derived directly from `useParams`
-    // and `programs` was not yet defined or checked.
-    // For now, keeping it as per instruction, but it might be simplified.
-    // For this specific instruction, the `if (!program)` check is added before this useEffect.
-    // So, this useEffect will only run if `program` is valid.
-    // The instruction also adds `window.scrollTo(0,0)` in a new useEffect.
-    // Let's remove the old 404 redirect useEffect as the new `if (!program)` handles it.
-    // The instruction implies removing the old useEffect and adding new ones.
-    // The instruction snippet does not include the old useEffect, so I will remove it.
-  }, []);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   const handleDonate = () => {
     setShowDonationModal(true);

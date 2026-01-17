@@ -4,8 +4,8 @@ const mealtohealImage = "/images/programs/mealtoheal.png";
 const gowiththeflowImage = "/images/programs/gowiththeflow.png";
 const rootforo2Image = "/images/programs/rootforO2.jpg";
 const storyoffrontlineImage = "/images/programs/storyoffrontlinewarriors.png";
-const communityImage = "/images/programs/indradhanush.png";
-const pragyaImage = "/images/programs/pragya.png";
+const communityImage = "/images/programs/indradhanush.jpeg";
+const pragyaImage = "/images/programs/Pragya.jpg";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {

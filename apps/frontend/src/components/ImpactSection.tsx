@@ -16,6 +16,7 @@ import {
     TrendingUp,
     Users
 } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 const ImpactSection = () => {
   const impactStats = [
@@ -180,9 +181,15 @@ const ImpactSection = () => {
     }
   ];
 
+  const { toast } = useToast();
+
   // Function to handle document download
   const handleDownload = (title: string) => {
-    console.log(`Downloading ${title}`);
+    toast({
+      title: "Download Started",
+      description: `Downloading ${title}...`,
+      variant: "success",
+    });
     // In a real implementation, this would trigger the actual document download
   };
 

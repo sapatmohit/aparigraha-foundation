@@ -14,7 +14,7 @@ const Indradhanush: React.FC = () => {
             <div>
               <img
                 className="rounded-2xl shadow-strong w-full h-full object-cover"
-                src="https/via.placeholder.com/800x600"
+                src="/images/programs/indradhanush.jpeg"
                 alt="Indradhanush Program"
               />
             </div>

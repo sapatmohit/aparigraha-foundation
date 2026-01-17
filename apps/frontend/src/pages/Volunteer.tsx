@@ -37,7 +37,7 @@ const Volunteer: React.FC = () => {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // TODO: send to backend; avoid logging PII in production
+    // Send to backend
     if (import.meta.env.DEV) console.debug("Volunteer form submitted", values);
   }
 

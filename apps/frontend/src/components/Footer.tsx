@@ -4,17 +4,18 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
+import { Link } from "react-router-dom";
 import {
-  ArrowRight,
-  Calendar,
-  Facebook,
-  Heart,
-  Instagram,
-  Linkedin,
-  Mail,
-  MapPin,
-  Phone,
-  Youtube
+    ArrowRight,
+    Calendar,
+    Facebook,
+    Heart,
+    Instagram,
+    Linkedin,
+    Mail,
+    MapPin,
+    Phone,
+    Youtube
 } from "lucide-react";
 import { useState } from "react";
 
@@ -27,21 +28,21 @@ const Footer = () => {
   const { toast } = useToast();
 
   const quickLinks = [
-    { title: "About Us", href: "#about" },
-    { title: "Our Programs", href: "#programs" },
-    { title: "Impact Reports", href: "#impact" },
-    { title: "Get Involved", href: "#get-involved" },
-    { title: "Latest News", href: "#news" },
-    { title: "Contact Us", href: "#contact" }
+    { title: "About Us", href: "/#about" },
+    { title: "Our Programs", href: "/#programs" },
+    { title: "Impact Reports", href: "/#impact" },
+    { title: "Get Involved", href: "/#get-involved" },
+    { title: "Latest News", href: "/#news" },
+    { title: "Contact Us", href: "/#contact" }
   ];
 
   const programs = [
-    { title: "Education Initiative", href: "#education" },
-    { title: "Healthcare Access", href: "#healthcare" },
-    { title: "Community Development", href: "#community" },
-    { title: "Emergency Response", href: "#emergency" },
-    { title: "Women Empowerment", href: "#women" },
-    { title: "Youth Programs", href: "#youth" }
+    { title: "Meal To Heal", href: "/program/mealtoheal" },
+    { title: "AurSunao", href: "/program/aursunao" },
+    { title: "Indradhanush", href: "/program/indradhanush" },
+    { title: "Go With The Flow", href: "/program/gowiththeflow" },
+    { title: "Pragya", href: "/program/pragya" },
+    { title: "Root For O2", href: "/program/rootforo2" }
   ];
 
   const policies = [
@@ -67,7 +68,7 @@ const Footer = () => {
       toast({
         title: "Email Required",
         description: "Please enter your email address to subscribe.",
-        variant: "destructive"
+        variant: "warning"
       });
       return;
     }
@@ -78,7 +79,7 @@ const Footer = () => {
       toast({
         title: "Invalid Email",
         description: "Please enter a valid email address.",
-        variant: "destructive"
+        variant: "warning"
       });
       return;
     }
@@ -87,7 +88,7 @@ const Footer = () => {
 
     try {
       // In a real implementation, you would send this to your backend
-      console.log("Subscribing email:", email);
+      // console.log("Subscribing email:", email);
 
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
@@ -95,6 +96,7 @@ const Footer = () => {
       toast({
         title: "Subscribed!",
         description: "Thank you for subscribing to our newsletter.",
+        variant: "success"
       });
 
       // Reset email field
@@ -247,13 +249,13 @@ const Footer = () => {
             <ul className="space-y-3">
               {programs.map((program) => (
                 <li key={program.title}>
-                  <a
-                    href={program.href}
+                  <Link
+                    to={program.href}
                     className="text-primary-foreground/80 hover:text-secondary transition-colors flex items-center group"
                   >
                     <ArrowRight className="h-3 w-3 mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
                     {program.title}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -265,13 +267,13 @@ const Footer = () => {
             <ul className="space-y-3">
               {policies.map((policy) => (
                 <li key={policy.title}>
-                  <a
-                    href={policy.href}
+                  <Link
+                    to={policy.href}
                     className="text-primary-foreground/80 hover:text-secondary transition-colors flex items-center group"
                   >
                     <ArrowRight className="h-3 w-3 mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
                     {policy.title}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

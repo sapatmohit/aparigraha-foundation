@@ -53,7 +53,7 @@ const VolunteerForm = ({ open, onClose, opportunityTitle }: VolunteerFormProps) 
       toast({
         title: "Missing Information",
         description: "Please provide your name and email to proceed.",
-        variant: "destructive"
+        variant: "warning"
       });
       return;
     }
@@ -62,7 +62,7 @@ const VolunteerForm = ({ open, onClose, opportunityTitle }: VolunteerFormProps) 
     
     try {
       // In a real application, you would send this data to your backend
-      console.log("Volunteer form submitted:", formData);
+      // console.log("Volunteer form submitted:", formData);
       
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
@@ -70,6 +70,7 @@ const VolunteerForm = ({ open, onClose, opportunityTitle }: VolunteerFormProps) 
       toast({
         title: "Application Submitted!",
         description: "Thank you for your interest in volunteering. We'll contact you soon.",
+        variant: "success"
       });
       
       // Reset form

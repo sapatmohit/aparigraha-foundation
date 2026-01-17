@@ -52,7 +52,7 @@ const ContactForm = ({ open, onClose, initialSubject = "", initialMessage = "" }
       toast({
         title: "Missing Information",
         description: "Please provide your name, email, and subject to proceed.",
-        variant: "destructive"
+        variant: "warning"
       });
       return;
     }
@@ -61,7 +61,7 @@ const ContactForm = ({ open, onClose, initialSubject = "", initialMessage = "" }
     
     try {
       // In a real application, you would send this data to your backend
-      console.log("Contact form submitted:", formData);
+      // console.log("Contact form submitted:", formData);
       
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
@@ -69,6 +69,7 @@ const ContactForm = ({ open, onClose, initialSubject = "", initialMessage = "" }
       toast({
         title: "Message Sent!",
         description: "Thank you for contacting us. We'll get back to you soon.",
+        variant: "success"
       });
       
       // Reset form
