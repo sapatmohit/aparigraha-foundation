@@ -30,7 +30,7 @@ const ContactSection = () => {
     {
       icon: Mail,
       title: "Email Us",
-      content: "help@aparigrahafoundation.com",
+      content: "info@aparigrahafoundation.com",
       description: "We'll respond within 24 hours",
       link: null
     },

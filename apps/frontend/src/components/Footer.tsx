@@ -194,17 +194,19 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-secondary" />
-                <span className="text-sm">Email - info@aparigrahafoundation.org</span>
+                <span className="text-sm">Email - info@aparigrahafoundation.com</span>
               </div>
               <div className="flex items-start space-x-3">
-                <MapPin className="h-5 w-5 text-secondary mt-0.5" />
+                <MapPin className="h-13 w-12 text-secondary mt-0.5" />
                 <span className="text-sm">
-                   Visit us - to be added later
+                  <a href="https://www.google.com/maps/search/?api=1&query=33+Ground+Floor+Citi+Mall+Oshiwara+Link+Road+Andheri+West+Mumbai+400053" target="_blank" rel="noopener noreferrer" className="hover:underline">
+                    Visit us - 33, Ground Floor, Citi Mall, Oshiwara Link Road, Andheri (W), Mumbai - 400053, Maharashtra, India
+                  </a>
                 </span>
               </div>
               <div className="flex items-center space-x-3">
-                <Calendar className="h-5 w-5 text-secondary" />
-                <span className="text-sm">Office hours - MONDAY to Sunday 10:00 am to 8:00 pm</span>
+                <Calendar className="h-5 w-5 text-secondary mt-0.5" />
+                <span className="text-sm">Office hours - Monday to Sunday 10:00 am to 8:00 pm</span>
               </div>
             </div>
 
@@ -297,10 +299,14 @@ const Footer = () => {
       <div className="container-custom py-6">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <div className="text-sm text-primary-foreground/80">
-            © 2024 Aparigraha Foundation. All rights reserved. | EIN: 12-3456789
+            © 2026 Aparigraha Foundation. All rights reserved. 
           </div>
           <div className="flex items-center space-x-6 text-sm text-primary-foreground/80">
-            <span>Made with ❤️ for a better world</span>
+            <span>
+              <a href="https://www.vupune.ac.in/" target="_blank" rel="noopener noreferrer" className="hover:underline">
+                    Made by Students of Vishwakarma University, Pune
+                  </a>
+            </span>
           </div>
         </div>
       </div>
